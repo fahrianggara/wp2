@@ -8,11 +8,14 @@
 </head>
 
 <body>
-    <?= $this->include('v_header') ?> <!-- Memasukkan file v_header.php untuk Header -->
+    <div id="wrapper">
 
-    <?= $this->renderSection('section') ?> <!-- Memasukkan isi content yang ada di v_index.php -->
+        <?= $this->include('v_header') ?> <!-- Memasukkan file v_header.php untuk Header -->
 
-    <?= $this->include('v_footer') ?> <!-- Memasukkan file v_footer.php untuk Footer -->
+        <?= $this->renderSection('content') ?> <!-- Memasukkan isi content yang ada di v_index.php -->
+
+        <?= $this->include('v_footer') ?> <!-- Memasukkan file v_footer.php untuk Footer -->
+    </div>
 </body>
 
 </html>
