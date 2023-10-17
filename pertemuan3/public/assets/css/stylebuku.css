@@ -63,3 +63,38 @@ section {
 ol.a {
     list-style-type: lower-alpha;
 }
+
+.about-container {
+	display: flex;
+	flex-direction: row;
+}
+
+.about-picture {
+	width: calc(100% / 1);
+	height: 300px;
+	margin-right: 20px;
+}
+
+.about-picture img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.about-description {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.social-media {
+	display: flex;
+	flex-direction: row;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.social-media li {
+	margin-right: 10px;
+}
