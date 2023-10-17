@@ -17,4 +17,16 @@ class WebController extends BaseController
             'judul' => "Halaman Depan",
         ]);
     }
+
+    /**
+     * Display about page.
+     * 
+     * @return void
+     */
+    public function about()
+    {
+        return view('v_about', [
+            'judul' => "Halaman About",
+        ]);
+    }
 }
