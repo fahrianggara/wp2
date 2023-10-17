@@ -16,6 +16,11 @@
                     Rekayasa Perangkat Lunak. Saya sangat tertarik dengan dunia pemrograman!
                 </p>
                 <p align="justify">
+                    Alamat rumah saya di Jl. Duren 01 No. 100, Rangkapan Jaya Baru, Pancoran Mas, Kota Depok.<br>
+                    Tempat lahir saya di Jakarta.<br>
+                    Olahraga yang saya sukai adalah Bulutangkis.<br>
+                </p>
+                <p align="justify">
                     Bahasa pemrograman yang saya sukai adalah PHP, karena saya merasa PHP sangat mudah untuk
                     dipelajari dan dipahami. Selain itu, PHP juga memiliki banyak framework yang dapat
                     mempermudah pekerjaan seorang programmer. Framework PHP yang saya sukai adalah Laravel 8+.
