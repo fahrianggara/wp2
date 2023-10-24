@@ -7,3 +7,8 @@ dan dinamis dan setting base_url()
 Github
 3. Demonstrasikan dan kumpulkan hasilnya di pertemuan
 selanjutnya
+
+# Screenshoot hasil
+
+![alt text](https://github.com/fahrianggara/wp2/blob/main/pertemuan3/public/img/home-page.png?raw=true)
+![alt text](https://github.com/fahrianggara/wp2/blob/main/pertemuan3/public/img/about-page.png?raw=true)
