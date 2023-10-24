@@ -13,3 +13,6 @@ $routes->get('/', function () {
 
 $routes->get('web', 'WebController::index'); // <-- Menampilkan halaman utama (web)
 $routes->get('about', 'WebController::about'); // <-- Menampilkan halaman about (web/about)
+
+$routes->get('matakuliah', 'MatakuliahController::index'); // <-- Menampilkan halaman form (matakuliah)
+$routes->post('matakuliah', 'MatakuliahController::store'); // <-- Menyimpan data (matakuliah)
