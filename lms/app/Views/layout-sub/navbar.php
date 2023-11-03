@@ -22,7 +22,13 @@
                     </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="javascript:void(0);">
-                        <i class="fas fa-sign-out-alt text-danger mr-2"></i> Logout
+                        <form action="<?= base_url('logout') ?>" method="post" id="logout-form">
+                            <?= csrf_field() ?>
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn p-0 dropdown-item" id="btn-logout">
+                                <i class="fas fa-sign-out-alt text-danger mr-2"></i> Logout
+                            </button>
+                        </form>
                     </a>
                 </div>
             </div>

@@ -8,6 +8,8 @@ use Tatter\Relations\Traits\ModelTrait;
 
 class UserModel extends Model
 {
+    use ModelTrait;
+
     protected $table            = 'users';
     protected $returnType       = User::class;
     protected $useTimestamps    = true;
