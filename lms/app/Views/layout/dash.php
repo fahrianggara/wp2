@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="<?= base_url('plugins/fontawesome-free/css/all.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('plugins/sweetalert2/sweetalert2.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('plugins/datatables/datatables-bs4/css/dataTables.bootstrap4.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/app.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/custom.css') ?>">
 </head>
@@ -61,10 +62,13 @@
         </div>
     </div>
 
-
     <script src="<?= base_url('plugins/jquery/jquery.min.js') ?>"></script>
     <script src="<?= base_url('plugins/bootstrap4/bootstrap.bundle.min.js') ?>"></script>
     <script src="<?= base_url('plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
+    <script src="<?= base_url('plugins/datatables/jquery.dataTables.min.js') ?>"></script>
+    <script src="<?= base_url('plugins/datatables/datatables-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
+    <script src="<?= base_url('plugins/datatables/datatables-buttons/js/dataTables.buttons.min.js') ?>"></script>
+    <script src="<?= base_url('plugins/datatables/datatables-buttons/js/buttons.print.min.js') ?>"></script>
     <script src="<?= base_url('js/app.js') ?>"></script>
     <script src="<?= base_url('js/custom.js') ?>"></script>
 
