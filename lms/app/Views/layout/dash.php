@@ -14,9 +14,9 @@
 
 <body class="sidebar-mini layout-fixed layout-footer-fixed">
 
-    <?= $this->include('layout/component/navbar') ?>
+    <?= $this->include('layout-sub/navbar') ?>
 
-    <?= $this->include('layout/component/sidebar') ?>
+    <?= $this->include('layout-sub/sidebar') ?>
 
     <div class="wrapper">
         <div class="content-wrapper">
@@ -35,7 +35,7 @@
             </section>
         </div>
 
-        <?= $this->include('layout/component/footer') ?>
+        <?= $this->include('layout-sub/footer') ?>
     </div>
 
     <script src="<?= base_url('plugins/jquery/jquery.min.js') ?>"></script>
