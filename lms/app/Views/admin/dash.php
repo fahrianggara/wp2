@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                Kamu login sebagai admin!
+                Halo <?= $user->first_name ?>!
             </div>
         </div>
     </div>

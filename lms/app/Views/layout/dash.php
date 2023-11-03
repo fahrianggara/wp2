@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dash - Di-Lemas</title>
+    <title><?= $title ?> - Di-Lemas</title>
 
     <link rel="stylesheet" href="<?= base_url('plugins/fontawesome-free/css/all.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('plugins/sweetalert2/sweetalert2.min.css') ?>">
@@ -24,7 +24,7 @@
                 <div class="container-fluid">
                     <div class="row align-items-center">
                         <div class="col-sm-6">
-                            <h5 class="m-0">Dash</h5>
+                            <h5 class="m-0"><?= $title ?></h5>
                         </div>
                     </div>
                 </div>

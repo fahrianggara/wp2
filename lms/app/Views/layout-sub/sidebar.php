@@ -9,18 +9,17 @@
 
         <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
             <div class="image">
-                <img src="<?= base_url('images/avatar.png') ?>" class="img-circle" alt="User Image">
+                <img src="<?= $user->getPicture() ?>" class="img-circle" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block">
-                    Ilham Ramadan
+                    <?= $user->getFullName() ?>
                 </a>
                 <small class="text-secondary">
-                    10220001
+                    <?= $user->id_number ?>
                 </small>
             </div>
         </div>
-
 
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"

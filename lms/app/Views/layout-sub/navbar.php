@@ -14,7 +14,7 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
                     <div class="dropdown-header">
-                        Ilham Ramadan
+                        <?= $user->getFullName() ?>
                     </div>
                     <a class="dropdown-item" href="javascript:void(0);">
                         <i class="fas fa-user mr-2"></i>

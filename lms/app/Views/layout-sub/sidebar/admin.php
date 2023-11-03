@@ -1,7 +1,7 @@
 <li class="nav-header">Menu</li>
 
 <li class="nav-item">
-    <a href="#" class="nav-link">
+    <a href="#" class="nav-link <?= $menu === 'dashboard' ? 'active' : '' ?>">
         <i class="nav-icon fas fa-chart-pie"></i>
         <p>
             Dashboard
