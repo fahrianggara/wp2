@@ -180,3 +180,8 @@ body {
     color: var(--text-secondary-color);
     transition: all 0.1s ease-in-out;
 }
+
+
+.nav-item .nav-link {
+    border-radius: 8px !important;
+}
