@@ -5,7 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Models\UserModel;
 
-class DashController extends BaseController
+class SiswaController extends BaseController
 {    
     protected $userModel, $db;
 
@@ -19,20 +19,20 @@ class DashController extends BaseController
         $this->userModel = new UserModel();
         $this->db = \Config\Database::connect();
     }
-
+    
     /**
-     * Display admin dashboard page.
+     * Display a listing of the resource.
      *
      * @return void
      */
     public function index()
     {
         $user = $this->userModel->where('id', session()->get('id'))->first();
-
-        return view('admin/dash', [
-            'title' => 'Dashboard',
-            'menu' => 'dashboard',
-            'user' => $user
+        
+        return view('admin/siswa/index', [
+            'title' => 'Siswa',
+            'menu' => 'siswa',
+            'user' => $user,
         ]);
     }
 }

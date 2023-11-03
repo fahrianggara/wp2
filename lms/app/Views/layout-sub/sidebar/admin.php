@@ -1,7 +1,8 @@
 <li class="nav-header">Menu</li>
 
 <li class="nav-item">
-    <a href="#" class="nav-link <?= $menu === 'dashboard' ? 'active' : '' ?>">
+    <a href="<?= route_to('admin.dash') ?>"
+        class="nav-link <?= $menu === 'dashboard' ? 'active' : '' ?>">
         <i class="nav-icon fas fa-chart-pie"></i>
         <p>
             Dashboard
@@ -21,7 +22,8 @@
 <li class="nav-header">Master Data</li>
 
 <li class="nav-item">
-    <a href="#" class="nav-link <?= $menu === 'siswa' ? 'active' : '' ?>">
+    <a href="<?= route_to('admin.siswa') ?>"
+        class="nav-link <?= $menu === 'siswa' ? 'active' : '' ?>">
         <i class="nav-icon fas fa-user-graduate"></i>
         <p>
             Siswa
