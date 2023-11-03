@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    --text-secondary-color: #636c72;
+    --border-color: rgba(4, 32, 69, .14);
+    --header-color: #efefef;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+}
+
+.authentication {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+}
+
+/* ========================================================================
+ * CARD BOOTSTRAP CUSTOM
+ * ======================================================================== */
+
+.card {
+    background-color: #f1f2f6;
+    border-radius: 10px;
+    box-shadow: none;
+    border: 1px solid var(--border-color);
+}
+
+.card.section-bg {
+    background-color: #fefeff;
+    border-radius: 12px;
+}
+
+.card:not(:has(.card-footer)).notif {
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.15);
+}
+
+.card:has(.card-header):has(.card-body):has(.card-footer) .card-header {
+    border-radius: 10px 10px 0 0;
+}
+
+.card:not(:has(.card-footer)) .card-header {
+    border-radius: 10px 10px 0 0;
+}
+
+.card:not(:has(.card-body)) .card-header {
+    border-bottom: none;
+    border-radius: 10px;
+}
+
+.card:not(:has(.card-body)) .card-footer {
+    border-top: none;
+    border-radius: 10px;
+}
+
+.card:not(:has(.card-footer)) .card-body {
+    border-radius: 0 0 10px 10px;
+}
+
+.card:not(:has(.card-header)) .card-body {
+    border-radius: 10px 10px 0 0;
+}
+
+.card:not(:has(.card-header)):not(:has(.card-footer)) .card-body {
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.card:not(:has(.card-body)):not(:has(.card-footer)) .card-header {
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.card:not(:has(.card-header)):not(:has(.card-body)) .card-footer {
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.card:has(.card-header):has(.card-body) .card-footer,
+.card:not(:has(.card-header)):has(.card-body) .card-footer {
+    border-radius: 0 0 10px 10px;
+}
+
+.card-header {
+    background-color: var(--header-color);
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 500;
+    color: var(--secondary-color);
+}
+
+.card-body {
+    background-color: #fff;
+}
+
+.card-footer {
+    background-color: var(--header-color);
+    border-top: 1px solid var(--border-color);
+}
+
+/* ========================================================================
+ * BUTTON BOOTSTRAP CUSTOM
+ * ======================================================================== */
+
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+/* ========================================================================
+ * FORM BOOTSTRAP CUSTOM
+ * ======================================================================== */
+
+.form-control {
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease-in-out;
+}
+
+.form-control::-webkit-input-placeholder,
+.form-group label {
+    font-size: 15px;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--text-secondary-color);
+}
+
+/* =======================================================================
+ *  DROPDOWN CUSTOM BOOTSTRAP 4
+ * ======================================================================= */
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: transparent;
+    color: #000;
+}
+
+.dropdown-toggle::after,
+.dropleft .dropdown-toggle::before {
+    display: none;
+}
+
+.dropdown-menu-lg {
+    min-width: 280px;
+}
+
+.dropdown-menu-md {
+    min-width: 240px;
+}
+
+.dropdown-menu {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-header {
+    background: var(--header-color);
+    position: relative;
+    bottom: 8px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.dropdown-toggle figure {
+    margin: 0;
+}
+
+.dropdown-item {
+    padding: 0rem 1rem;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary-color);
+    transition: all 0.1s ease-in-out;
+}
