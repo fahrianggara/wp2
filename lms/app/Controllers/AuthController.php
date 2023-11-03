@@ -76,7 +76,7 @@ class AuthController extends BaseController
             }
     
             if (!password_verify($password, $user->password)) {
-                $error = ['errIdNumber' => 'Kata sandi salah!'];
+                $error = ['errPassword' => 'Kata sandi salah!'];
                 $session->setFlashdata($error);
                 return redirect()->back()->withInput();
             } 
