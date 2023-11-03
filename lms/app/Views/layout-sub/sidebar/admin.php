@@ -21,24 +21,6 @@
 <li class="nav-header">Master Data</li>
 
 <li class="nav-item">
-    <a href="#" class="nav-link <?= $menu === 'kelas' ? 'active' : '' ?>">
-        <i class="nav-icon fas fa-chalkboard-teacher"></i>
-        <p>
-            Kelas
-        </p>
-    </a>
-</li>
-
-<li class="nav-item">
-    <a href="#" class="nav-link <?= $menu === 'mapel' ? 'active' : '' ?>">
-        <i class="nav-icon fas fa-calendar-alt"></i>
-        <p>
-            Jadwal
-        </p>
-    </a>
-</li>
-
-<li class="nav-item">
     <a href="#" class="nav-link <?= $menu === 'siswa' ? 'active' : '' ?>">
         <i class="nav-icon fas fa-user-graduate"></i>
         <p>
@@ -52,6 +34,35 @@
         <i class="nav-icon fas fa-user-tie"></i>
         <p>
             Guru
+        </p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a href="#" class="nav-link <?= $menu === 'kelas' ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-chalkboard-teacher"></i>
+        <p>
+            Kelas
+        </p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a href="#" class="nav-link <?= $menu === 'mapel' ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-calendar-alt"></i>
+        <p>
+            Jadwal Kelas
+        </p>
+    </a>
+</li>
+
+<li class="nav-header">Logout</li>
+
+<li class="nav-item">
+    <a href="<?= route_to('logout') ?>" class="nav-link bg-danger" id="btn-logout">
+        <i class="nav-icon fas fa-sign-out-alt "></i>
+        <p>
+            Logout
         </p>
     </a>
 </li>
