@@ -26,11 +26,11 @@
                 data-accordion="false">
 
                 <?php if (session()->get('role') === 'admin'): ?>
-                    <?= $this->include('layout-sub/sidebar/admin') ?>
+                    <?= $this->include('layout/sub/sidebar/admin') ?>
                 <?php elseif (session()->get('role') === 'teacher'): ?>
-                    <?= $this->include('layout-sub/sidebar/teacher') ?>
+                    <?= $this->include('layout/sub/sidebar/teacher') ?>
                 <?php elseif (session()->get('role') === 'student'): ?>
-                    <?= $this->include('layout-sub/sidebar/student') ?>
+                    <?= $this->include('layout/sub/sidebar/student') ?>
                 <?php endif; ?>
 
             </ul>
