@@ -56,7 +56,7 @@
     </a>
 </li>
 
-<li class="nav-header">Logout</li>
+<li class="nav-header">Aksi</li>
 
 <li class="nav-item">
     <a href="<?= route_to('logout') ?>" class="nav-link bg-danger" id="btn-logout">

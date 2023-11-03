@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-light-primary elevation-4">
+<aside class="main-sidebar sidebar-light-primary elevation-1">
 
     <a href="javascript:void(0)" class="brand-link text-center d-flex align-items-center">
         <i class="fa fa-graduation-cap fa-lg px-0 brand-image text-primary"></i>
