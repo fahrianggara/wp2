@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header p-2">
                     <div class="d-flex align-items-center justify-content-between">
-                        <span class="mx-2">Data Siswa</span>
+                        <span class="mx-2">Daftar Siswa</span>
                         <a href="<?= route_to('admin.siswa.create') ?>" class="btn btn-success btn-sm ">
                             <i class="fas fa-plus mr-1"></i> Tambah
                         </a>

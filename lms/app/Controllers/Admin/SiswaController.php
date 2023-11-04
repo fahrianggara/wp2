@@ -34,7 +34,7 @@ class SiswaController extends BaseController
         $users = $this->userModel->where('role', 'student')->with(['students'])->findAll();
 
         return view('admin/siswa/index', [
-            'title' => 'Siswa',
+            'title' => 'Data Siswa',
             'menu' => 'siswa',
             'user' =>  $this->auth,
             'users' => $users,
