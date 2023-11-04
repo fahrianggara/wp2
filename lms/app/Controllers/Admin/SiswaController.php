@@ -62,14 +62,16 @@ class SiswaController extends BaseController
      */
     public function store()
     {
-        $request = $this->request;
-        
         if (!$this->validate($this->rules())) {
             return redirect()->back()->withInput();
         }
-
+        
         $this->db->transBegin();
         try {
+            $request = $this->request;
+            $filePicture = $request->getFile('picture');
+            $picture = upload_picture($filePicture, 'images/pictures');
+
             $this->userModel->save([
                 'first_name'    => $request->getVar('first_name'),
                 'last_name'     => $request->getVar('last_name'),
@@ -78,7 +80,7 @@ class SiswaController extends BaseController
                 'password'      => password_hash($request->getVar('id_number'), PASSWORD_BCRYPT),
                 'gender'        => $request->getVar('gender'),
                 'religion'      => $request->getVar('religion'),
-                'picture'       =>  $this->uploadPicture(),
+                'picture'       => $picture,
                 'role'          => 'student',
             ]);
 
@@ -94,29 +96,6 @@ class SiswaController extends BaseController
         } finally {
             $this->db->transCommit();
         }
-    }
-
-    /**
-     * Insert picture student to storage.
-     * 
-     * @return void
-     */
-    private function uploadPicture()
-    {
-        $picture = $this->request->getFile('picture');
-
-        if ($picture->getError() == 4) {
-            $pictureName = 'picture.png';
-        } else {
-            $pictureName = $picture->getRandomName();
-            Services::image()
-                ->withFile($picture)
-                ->fit(400, 400, 'center')
-                ->convert(IMAGETYPE_JPEG)
-                ->save('images/pictures/' . $pictureName);
-        }
-
-        return $pictureName;
     }
 
     /**
