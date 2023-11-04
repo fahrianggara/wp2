@@ -28,24 +28,19 @@ class Guest implements FilterInterface
         $session = session();
 
         if ($session->has('logged_in')) {
-            $session->setFlashdata('err', 'Anda sudah login!');
-
             switch ($session->role) {
                 case 'admin':
-                    $session->setFlashdata('msg', 'Selamat datang, Admin!');
                     return redirect()->route('admin.dash');
                     break;
                 case 'teacher':
-                    $session->setFlashdata('msg', 'Selamat datang, Guru!');
                     return redirect()->route('guru.dash');
                     break;
                 case 'student':
-                    $session->setFlashdata('msg', 'Selamat datang, Siswa!');
                     return redirect()->route('siswa.dash');
                     break;
                 default:
                     $session->destroy();
-                    return redirect()->route('login')->with('err', 'Role tidak ditemukan!');
+                    return redirect()->route('login')->with('error', 'Role tidak ditemukan!');
                     break;
             }
         }

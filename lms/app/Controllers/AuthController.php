@@ -70,14 +70,12 @@ class AuthController extends BaseController
             $user = $userModel->where('id_number', $id_number)->first();
 
             if (!$user) {
-                $error = ['errIdNumber' => 'Nomer induk tidak ditemukan!'];
-                $session->setFlashdata($error);
+                $session->setFlashdata('error', 'Nomer induk tidak ditemukan!');
                 return redirect()->back()->withInput();
             }
     
             if (!password_verify($password, $user->password)) {
-                $error = ['errPassword' => 'Kata sandi salah!'];
-                $session->setFlashdata($error);
+                $session->setFlashdata('error', 'Kata sandi salah!');
                 return redirect()->back()->withInput();
             } 
 
@@ -87,28 +85,30 @@ class AuthController extends BaseController
                 'logged_in' => true
             ]);
 
+            $full_name = full_name($user);
+
             switch ($session->role) {
                 case 'admin':
-                    $session->setFlashdata('msg', 'Selamat datang, Admin!');
+                    $session->setFlashdata('info', "Selamat datang, $full_name!");
                     return redirect()->route('admin.dash');
                     break;
                 case 'teacher':
-                    $session->setFlashdata('msg', 'Selamat datang, Guru!');
+                    $session->setFlashdata('info', "Selamat datang, $full_name!");
                     return redirect()->route('guru.dash');
                     break;
                 case 'student':
-                    $session->setFlashdata('msg', 'Selamat datang, Siswa!');
+                    $session->setFlashdata('info', "Selamat datang, $full_name!");
                     return redirect()->route('siswa.dash');
                     break;
                 default:
                     $session->destroy();
-                    return redirect()->route('login')->with('err', 'Role tidak ditemukan!');
+                    return redirect()->route('login')->with('error', 'Role tidak ditemukan!');
                     break;
             }
         } catch (\Throwable $th) {
             $db->transRollback();
 
-            $session->setFlashdata('err', $th->getMessage());
+            $session->setFlashdata('error', $th->getMessage());
             return redirect()->back()->withInput();
         } finally {
             $db->transCommit();
@@ -123,6 +123,6 @@ class AuthController extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->route('login')->with('msg', 'Anda telah keluar!');
+        return redirect()->route('login')->with('info', 'Anda telah keluar dari aplikasi!');
     }
 }

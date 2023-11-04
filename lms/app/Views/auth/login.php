@@ -2,22 +2,15 @@
 
 <?= $this->section('content') ?>
 
-    <?php 
-        $flashDataIdNumber = session()->getFlashdata('errIdNumber');
-        $invalidIdNumber = $flashDataIdNumber ? 'is-invalid' : '';
-
-        $flashDataPassword = session()->getFlashdata('errPassword');
-        $invalidPassword = $flashDataPassword ? 'is-invalid' : '';
-    ?>
-
     <section class="authentication">
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-md-5">
                     <form action="<?= base_url('login') ?>" class="card" method="post" 
                         autocomplete="off">
-                        <?= csrf_field(); ?>
+
                         <input type="hidden" name="_method" value="POST">
+                        <?= csrf_field(); ?>
 
                         <div class="card-header">
                             Silahkan Masuk ke Akun Anda
@@ -25,11 +18,11 @@
 
                         <div class="card-body">
 
-                            <?php if (session()->getFlashdata('err')): ?>
+                            <?php if (session()->getFlashdata('error')): ?>
                                 <div class="alert alert-default-danger alert-dismissible fade show" 
                                     role="alert">
                                     <strong>Perhatian!</strong> <br>
-                                    <small><?= session()->getFlashdata('err') ?></small>
+                                    <small><?= session()->getFlashdata('error') ?></small>
                                     <button type="button" class="close" data-dismiss="alert" 
                                         aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -38,24 +31,27 @@
                             <?php endif; ?>
                             
                             <div class="form-group">
-                                <label for="id_number">Nomer Induk</label>
-                                <input type="text" class="form-control <?= $invalidIdNumber ?>" 
-                                    id="id_number" name="id_number" value="<?= old('id_number') ?>"
+                                <label for="id_number" wajib>Nomer Induk</label>
+
+                                <input type="text" id="id_number" name="id_number" value="<?= old('id_number') ?>"
+                                    class="form-control <?= validation_show_error('id_number') ? 'is-invalid' : '' ?>" 
                                     placeholder="Masukkan Nomer Induk">
                                 
-                                <?php if ($flashDataIdNumber): ?>
-                                    <div class="invalid-feedback"><?= $flashDataIdNumber ?></div>
-                                <?php endif; ?>
+                                <div class="invalid-feedback d-block">
+                                    <?= validation_show_error('id_number') ?>
+                                </div>
                             </div>
 
                             <div class="form-group mb-1">
-                                <label for="password">Kata Sandi</label>
-                                <input type="password" class="form-control <?= $invalidPassword ?>" 
-                                    id="password" name="password" placeholder="Masukkan Kata Sandi">
+                                <label for="password" wajib>Kata Sandi</label>
 
-                                <?php if ($flashDataPassword): ?>
-                                    <div class="invalid-feedback"><?= $flashDataPassword ?></div>
-                                <?php endif; ?>
+                                <input type="password"
+                                    id="password" name="password" placeholder="Masukkan Kata Sandi"
+                                    class="form-control <?= validation_show_error('password') ? 'is-invalid' : '' ?>">
+
+                                <div class="invalid-feedback d-block">
+                                    <?= validation_show_error('password') ?>
+                                </div>
                             </div>
                         </div>
 
