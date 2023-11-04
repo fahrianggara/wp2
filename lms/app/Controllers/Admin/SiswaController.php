@@ -132,7 +132,6 @@ class SiswaController extends BaseController
     {
         $request = $this->request;
         $id = base64_decode($request->getVar('id'));
-        $user = $this->userModel->find($id);
         
         if (!$this->validate($this->rules(true, $id))) {
             return redirect()->back()->withInput();
