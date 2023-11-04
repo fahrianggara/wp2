@@ -59,8 +59,8 @@
                                                     <a href="<?= base_url("admin/guru/edit/" . base64_encode($user->id)) ?>" class="dropdown-item py-1">
                                                         <i class="fas text-warning fa-pen mr-2"></i> Edit
                                                     </a>
-                                                    <button type="button" value="<?= $user->id ?>" class="dropdown-item py-1 btn-delete"
-                                                        data-name="<?= full_name($user) ?>" data-nis="<?= $user->id_number ?>" 
+                                                    <button type="button" value="<?= base64_encode($user->id) ?>" class="dropdown-item py-1 btn-delete"
+                                                        data-name="<?= full_name($user) ?>" data-no_induk="<?= $user->id_number ?>" 
                                                         data-action="<?= route_to('admin.guru.destroy') ?>">
                                                         <i class="fas text-danger fa-trash mr-2"></i> Hapus
                                                     </button>
@@ -85,6 +85,55 @@
 
 <script>
     const table = $("#table-guru").DataTable();
+    const btnDelete = $(".btn-delete");
+
+    btnDelete.on("click", function(e) {
+        e.preventDefault();
+
+        const id = $(this).val();
+        const name = $(this).data("name");
+        const no_induk = $(this).data("no_induk");
+        const action = $(this).data("action");
+
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+            html: `Akan menghapus data guru <b>${name}</b> dengan NIP <b>${no_induk}</b>`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: action,
+                    type: "POST",
+                    data: {id: id},
+                    success: function(res) {
+                        if (res.status === 200) {
+                            Swal.fire({
+                                title: 'Berhasil!',
+                                text: res.message,
+                                icon: 'success',
+                                allowOutsideClick: false,
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                text: res.message,
+                                icon: 'error',
+                                confirmButtonText: 'Tutup',
+                            });
+                        }
+                    },
+                });
+            }
+        });
+    });
 </script>
 
 <?= $this->endSection() ?>

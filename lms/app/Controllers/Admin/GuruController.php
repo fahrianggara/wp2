@@ -7,6 +7,7 @@ use App\Models\ClassRoomModel;
 use App\Models\TeacherModel;
 use App\Models\UserModel;
 use Carbon\Carbon;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class GuruController extends BaseController
 {    
@@ -181,7 +182,39 @@ class GuruController extends BaseController
         } finally {
             $this->db->transCommit();
         }
-        
+    }
+
+    /**
+     * Destroy the specified resource from storage.
+     * 
+     * @return void
+     */
+    public function destroy()
+    {
+        if (!$this->request->isAJAX()) //  jika akses lewat url
+            throw PageNotFoundException::forPageNotFound(); 
+
+        $this->db->transBegin();
+        try {
+            $id = base64_decode($this->request->getVar('id'));
+
+            $user = $this->userModel->find($id);
+            destroy_file($user->picture, 'images/pictures');
+            $this->userModel->delete($id);
+
+            return $this->response->setJSON([
+                'status' => 200,
+                'message' => 'Data guru berhasil dihapus.'
+            ]);
+        } catch (\Throwable $th) {
+            $this->db->transRollback();
+            return $this->response->setJSON([
+                'status' => 400,
+                'message' => $th->getMessage()
+            ]);
+        } finally {
+            $this->db->transCommit();
+        }
     }
 
     /**
