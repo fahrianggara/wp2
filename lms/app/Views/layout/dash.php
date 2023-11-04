@@ -15,6 +15,8 @@
 
 <body class="sidebar-mini layout-fixed layout-footer-fixed">
 
+    <?= $this->include('layout/sub/flashdata') ?>
+
     <?= $this->include('layout/sub/navbar') ?>
 
     <?= $this->include('layout/sub/sidebar') ?>
@@ -73,20 +75,6 @@
     <script src="<?= base_url('js/custom.js') ?>"></script>
 
     <?= $this->renderSection('js') ?>
-
-    <script>
-        $(document).ready(function () {
-            $(document).on("click", "#btn-logout", function (e) {
-                e.preventDefault();
-                $(".modal-logout").modal("show");
-            });
-
-            $(document).on("click", ".btn-logout", function (e) {
-                e.preventDefault();
-                $("#logout-form").submit();
-            });
-        });
-    </script>
 </body>
 
 </html>
