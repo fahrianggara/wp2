@@ -47,4 +47,26 @@ class UserModel extends Model
     {
         $this->db->table('students')->update($data, ['user_id' => $id]);
     }
+
+    /**
+     * Insert new teacher data.
+     *
+     * @param  mixed $user
+     * @return void
+     */
+    public function insertTeacher($data)
+    {
+        $this->db->table('teachers')->insert($data);
+    }
+
+    /**
+     * Update teacher data.
+     *
+     * @param  mixed $user
+     * @return void
+     */
+    public function updateTeacher($data, $id)
+    {
+        $this->db->table('teachers')->update($data, ['user_id' => $id]);
+    }
 }
