@@ -30,26 +30,26 @@
                             </thead>
                             <tbody>
                                 <?php $no = 1 ?>
-                                <?php foreach($students as $student): ?>
+                                <?php foreach($users as $user): ?>
                                     <tr>
                                         <?php 
-                                            $classroom_id = $student->students[0]->classroom_id;
+                                            $classroom_id = $user->students[0]->classroom_id;
                                             $classrooms = new \App\Models\ClassRoomModel();
                                             $classroom = $classrooms->where('id', $classroom_id)->first();
                                         ?>
                                         <td><?= $no++ ?></td>
                                         <td>
                                             <div class="user-info">
-                                                <img src="<?= $student->getPicture() ?>">
+                                                <img src="<?= $user->photo ?>">
                                                 <div class="user-name">
-                                                    <span><?= $student->getFullName() ?></span>
-                                                    <small><?= $student->id_number ?></small>
+                                                    <span><?= $user->full_name ?></span>
+                                                    <small><?= $user->id_number ?></small>
                                                 </div>
                                             </div>
                                         </td>
                                         <td><?= $classroom->name ?></td>
-                                        <td><?= remove_underscore($student->gender) ?></td>
-                                        <td><?= ucfirst($student->religion) ?></td>
+                                        <td><?= remove_underscore($user->gender) ?></td>
+                                        <td><?= ucfirst($user->religion) ?></td>
                                         <td>
                                             <div class="btn-group dropleft">
                                                 <button class="btn btn-sm btn-more dropdown-toggle"
@@ -60,9 +60,11 @@
                                                     <a class="dropdown-item py-1" href="javascript:void(0);">
                                                         <i class="fas text-warning fa-pen mr-2"></i> Edit
                                                     </a>
-                                                    <a class="dropdown-item py-1" href="javascript:void(0);">
+                                                    <button type="button" value="<?= $user->id ?>" class="dropdown-item py-1 btn-delete"
+                                                        data-name="<?= full_name($user) ?>" data-nis="<?= $user->id_number ?>" 
+                                                        data-action="<?= route_to('admin.siswa.destroy') ?>">
                                                         <i class="fas text-danger fa-trash mr-2"></i> Hapus
-                                                    </a>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </td>
@@ -84,6 +86,55 @@
 
 <script>
     const table = $("#table-siswa").DataTable();
+    const btnDelete = $(".btn-delete");
+
+    btnDelete.on("click", function(e) {
+        e.preventDefault();
+
+        const id = $(this).val();
+        const name = $(this).data("name");
+        const nis = $(this).data("nis");
+        const action = $(this).data("action");
+
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+            html: `Akan menghapus data siswa <b>${name}</b> dengan NIS <b>${nis}</b>`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: action,
+                    type: "POST",
+                    data: {id: id},
+                    success: function(res) {
+                        if (res.status === 200) {
+                            Swal.fire({
+                                title: 'Berhasil!',
+                                text: res.message,
+                                icon: 'success',
+                                allowOutsideClick: false,
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                text: res.message,
+                                icon: 'error',
+                                confirmButtonText: 'Tutup',
+                            });
+                        }
+                    },
+                });
+            }
+        });
+    });
 </script>
 
 <?= $this->endSection() ?>

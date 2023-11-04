@@ -24,5 +24,6 @@ $routes->group('admin', ['filter' => ['auth', 'role_admin'], 'namespace' => Admi
         $routes->get('/', 'SiswaController::index', ['as' => 'admin.siswa']);
         $routes->get('create', 'SiswaController::create', ['as' => 'admin.siswa.create']);
         $routes->post('store', 'SiswaController::store', ['as' => 'admin.siswa.store']);
+        $routes->post('destroy', 'SiswaController::destroy', ['as' => 'admin.siswa.destroy']);
     });
 });

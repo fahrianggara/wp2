@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Models\UserModel;
 use App\Models\ClassRoomModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
 use Config\Services;
 
 class SiswaController extends BaseController
@@ -30,13 +31,13 @@ class SiswaController extends BaseController
      */
     public function index()
     {   
-        $students = $this->userModel->where('role', 'student')->with(['students'])->findAll();
+        $users = $this->userModel->where('role', 'student')->with(['students'])->findAll();
 
         return view('admin/siswa/index', [
             'title' => 'Siswa',
             'menu' => 'siswa',
             'user' =>  $this->auth,
-            'students' => $students,
+            'users' => $users,
         ]);
     }
 
@@ -93,6 +94,39 @@ class SiswaController extends BaseController
         } catch (\Throwable $th) {
             $this->db->transRollback();
             return redirect()->back()->withInput()->with('error', $th->getMessage());
+        } finally {
+            $this->db->transCommit();
+        }
+    }
+
+    /**
+     * Destroy the specified resource from storage.
+     * 
+     * @return void
+     */
+    public function destroy()
+    {
+        if (!$this->request->isAJAX()) //  jika akses lewat url
+            throw PageNotFoundException::forPageNotFound(); 
+
+        $this->db->transBegin();
+        try {
+            $id = $this->request->getPost('id');
+
+            $user = $this->userModel->find($id);
+            destroy_file($user->picture, 'images/pictures');
+            $this->userModel->delete($id);
+
+            return $this->response->setJSON([
+                'status' => 200,
+                'message' => 'Data siswa berhasil dihapus.'
+            ]);
+        } catch (\Throwable $th) {
+            $this->db->transRollback();
+            return $this->response->setJSON([
+                'status' => 400,
+                'message' => $th->getMessage()
+            ]);
         } finally {
             $this->db->transCommit();
         }

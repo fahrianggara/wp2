@@ -26,7 +26,7 @@ class User extends Entity
      * @param  mixed $picture
      * @return void
      */
-    public function getPicture()
+    public function getPhoto()
     {
         $path = 'images/pictures/' . $this->attributes['picture'];
         return file_exists($path) ? base_url($path) : base_url('images/picture.png');

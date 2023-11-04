@@ -9,11 +9,11 @@
 
         <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
             <div class="image">
-                <img src="<?= $user->getPicture() ?>" class="img-circle" alt="User Image">
+                <img src="<?= $user->photo ?>" class="img-circle" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block">
-                    <?= $user->getFullName() ?>
+                    <?= $user->full_name ?>
                 </a>
                 <small class="text-secondary">
                     <?= $user->id_number ?>

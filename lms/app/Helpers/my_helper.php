@@ -36,7 +36,20 @@ function remove_underscore($string)
 function full_name($user)
 {
     return $user->first_name . ' ' . $user->last_name;
-}   
+}
+
+/**
+ * Get picture user.
+ * 
+ * @param  mixed $user
+ * @param mixed $path
+ * @return void
+ */
+function picture($user, $path)
+{
+    $path = "$path/$user->picture";
+    return file_exists($path) ? base_url($path) : base_url('images/picture.png');
+}
 
 /**
  * Upload picture user.
@@ -59,4 +72,17 @@ function upload_picture($picture, $path)
     }
 
     return $pictureName;
+}
+
+/**
+ * Destroy file from storage.
+ * 
+ * @param  mixed $filename
+ * @param mixed $path
+ * @return void
+ */
+function destroy_file($filename, $path)
+{
+    $pathUrl = "$path/$filename";
+    if (file_exists($pathUrl)) unlink($pathUrl);
 }

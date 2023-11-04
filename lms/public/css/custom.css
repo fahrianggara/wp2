@@ -159,7 +159,19 @@ label[wajib]::after {
 }
 
 .swal2-popup {
-    border-radius: 12px !important;
+    border-radius: 15px !important;
+}
+
+.swal2-popup:not(.swal2-toast) .swal2-title {
+    font-size: 22px !important;
+}
+
+.swal2-content {
+    font-size: 18px !important;
+}
+
+.swal2-styled {
+    border-radius: 8px !important;
 }
 
 .alert {
@@ -182,6 +194,7 @@ label[wajib]::after {
 .user-info .user-name {
     display: flex;
     flex-direction: column;
+    font-size: 15px;
 }
 
 .user-info .user-name small {
