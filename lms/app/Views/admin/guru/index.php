@@ -30,7 +30,45 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                <?php $no = 1 ?>
+                                <?php foreach($users as $user): ?>
+                                    <tr>
+                                        <?php 
+                                            $teacher = $user->teachers[0];
+                                            $classes = $db->table('teacher_classrooms')->where('teacher_id', $teacher->id)->get()->getResult();
+                                        ?>
+                                        <td><?= $no++ ?></td>
+                                        <td><?= user_info($user) ?></td>
+                                        <td><?= $teacher->code ?></td>
+                                        <td>
+                                            <?php foreach ($classes as $class): ?>
+                                                <span class="badge badge-primary">
+                                                    <?= $db->table('classrooms')->where('id', $class->classroom_id)->get()->getRow()->name; ?>
+                                                </span>
+                                            <?php endforeach ?>
+                                        </td>
+                                        <td><?= remove_underscore($user->gender) ?></td>
+                                        <td><?= ucfirst($user->religion) ?></td>
+                                        <td>
+                                            <div class="btn-group dropleft">
+                                                <button class="btn btn-sm btn-more dropdown-toggle"
+                                                    data-toggle="dropdown" aria-expanded="false" data-display="static">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="<?= base_url("admin/guru/edit/" . base64_encode($user->id)) ?>" class="dropdown-item py-1">
+                                                        <i class="fas text-warning fa-pen mr-2"></i> Edit
+                                                    </a>
+                                                    <button type="button" value="<?= $user->id ?>" class="dropdown-item py-1 btn-delete"
+                                                        data-name="<?= full_name($user) ?>" data-nis="<?= $user->id_number ?>" 
+                                                        data-action="<?= route_to('admin.guru.destroy') ?>">
+                                                        <i class="fas text-danger fa-trash mr-2"></i> Hapus
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
                             </tbody>
                         </table>
                     </div>

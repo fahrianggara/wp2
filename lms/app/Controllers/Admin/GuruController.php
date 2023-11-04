@@ -33,12 +33,13 @@ class GuruController extends BaseController
     public function index()
     {
         $users = $this->userModel->where('role', 'teacher')->with(['teachers'])->findAll();
-
+        
         return view('admin/guru/index', [
             'title' => 'Data Guru',
             'menu'  => 'guru',
             'user'  => $this->auth,
-            'users' => $users
+            'users' => $users,
+            'db'    => $this->db
         ]);
     }
 
