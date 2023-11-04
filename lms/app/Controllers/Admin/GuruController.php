@@ -103,6 +103,39 @@ class GuruController extends BaseController
     }
 
     /**
+     * Edit the specified resource from storage.
+     * 
+     * @param string $id
+     * @return void
+     */
+    public function edit(string $id) 
+    {
+        $id = base64_decode($id);
+        $user = $this->userModel->where('id', $id)->with(['teachers'])->first();
+
+        if (!$user) // jika guru tidak ditemukan
+            return redirect()->route('admin.guru')->with('error', 'Data guru tidak ditemukan.');
+        
+        $guru = $user->teachers[0]; // get teacher
+        $user->code = $guru->code; // set code
+        $teacher_classrooms = $this->db->table('teacher_classrooms')->where('teacher_id', $guru->id)->get()->getResult();
+
+        // get classroom ids
+        $classroom_ids = [];
+        foreach ($teacher_classrooms as $tc)
+            $classroom_ids[] = $tc->classroom_id;
+        
+        return view('admin/guru/edit', [
+            'title' => 'Edit Guru',
+            'menu' => 'guru',
+            'user' =>  $this->auth,
+            'classrooms' => (new ClassRoomModel())->findAll(),
+            'classroom_ids' => $classroom_ids,
+            'guru' => $user,
+        ]);
+    }
+
+    /**
      * Message for validation
      * 
      * @return array
