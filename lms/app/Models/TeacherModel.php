@@ -14,7 +14,14 @@ class TeacherModel extends Model
         'user_id', 'code',
     ];
 
-    // Sync between teachers and classrooms table (teacher_classrooms table)
+        
+    /**
+     * Insert relation data to teacher_classrooms table.
+     *
+     * @param  mixed $teacherId
+     * @param  mixed $classroomIds
+     * @return void
+     */
     public function syncClassrooms($teacherId, $classroomIds)
     {
         $this->db->table('teacher_classrooms')->where('teacher_id', $teacherId)->delete();
