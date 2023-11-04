@@ -24,4 +24,16 @@ class UserModel extends Model
         'role', 
         'password'
     ];
+
+        
+    /**
+     * Get the student's full name.
+     *
+     * @param  mixed $user
+     * @return void
+     */
+    public function insertStudent($data)
+    {
+        $this->db->table('students')->insert($data);
+    }
 }

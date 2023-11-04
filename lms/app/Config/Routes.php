@@ -22,5 +22,7 @@ $routes->group('admin', ['filter' => ['auth', 'role_admin'], 'namespace' => Admi
     // Admin > Siswa Routes
     $routes->group('siswa', function ($routes) {
         $routes->get('/', 'SiswaController::index', ['as' => 'admin.siswa']);
+        $routes->get('create', 'SiswaController::create', ['as' => 'admin.siswa.create']);
+        $routes->post('store', 'SiswaController::store', ['as' => 'admin.siswa.store']);
     });
 });

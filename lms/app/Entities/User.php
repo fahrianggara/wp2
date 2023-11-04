@@ -28,7 +28,7 @@ class User extends Entity
      */
     public function getPicture()
     {
-        $path = base_url('images/pictures/' . $this->attributes['picture']);
-        return file_exists($path) ? $path : base_url('images/picture.png');
+        $path = 'images/pictures/' . $this->attributes['picture'];
+        return file_exists($path) ? base_url($path) : base_url('images/picture.png');
     }
 }
