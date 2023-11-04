@@ -17,8 +17,8 @@ class CreateStudentsTable extends Migration
         ]);
 
         $this->forge->addKey("id", true);
-        $this->forge->addForeignKey('user_id', 'users', 'id');
-        $this->forge->addForeignKey('classroom_id', 'classrooms', 'id');
+        $this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('classroom_id', 'classrooms', 'id', 'CASCADE', 'NULL');
         $this->forge->createTable("students");
     }
 

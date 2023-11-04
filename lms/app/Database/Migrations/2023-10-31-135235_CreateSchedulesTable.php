@@ -20,8 +20,8 @@ class CreateSchedulesTable extends Migration
         ]);
 
         $this->forge->addKey("id", true);
-        $this->forge->addForeignKey("teacher_id", "teachers", "id");
-        $this->forge->addForeignKey("classroom_id", "classrooms", "id");
+        $this->forge->addForeignKey("teacher_id", "teachers", "id", "CASCADE", "NULL");
+        $this->forge->addForeignKey("classroom_id", "classrooms", "id", "CASCADE", "NULL");
         $this->forge->createTable("schedules");
     }
 
