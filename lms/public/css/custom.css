@@ -3,7 +3,7 @@
 :root {
     --text-secondary-color: #636c72;
     --border-color: rgba(4, 32, 69, .14);
-    --header-color: #efefef;
+    --header-color: #f1f1f1;
 }
 
 body {
@@ -25,6 +25,17 @@ body {
 
 i.brand-image {
     margin-right: 0.7rem !important;
+}
+
+.btn-group-sm > .btn, .btn-sm {
+    border-radius: 8px !important;
+    padding: 0.4rem 0.8rem !important;
+}
+
+label[wajib]::after {
+    content: "*";
+    color: red;
+    margin-left: 3px;
 }
 
 /* ========================================================================
@@ -125,7 +136,8 @@ i.brand-image {
  * FORM BOOTSTRAP CUSTOM
  * ======================================================================== */
 
-.form-control {
+.form-control, .custom-select, .custom-file-label {
+    font-size: 15px;
     border-radius: 8px;
     border: 1px solid var(--border-color);
     transition: all 0.3s ease-in-out;
@@ -140,6 +152,48 @@ i.brand-image {
     font-weight: 500;
     color: var(--text-secondary-color);
 }
+
+.custom-file-label, .custom-file-label::after {
+    padding: 0.475rem 0.75rem;
+    font-weight: 400 !important;
+}
+
+.swal2-popup {
+    border-radius: 12px !important;
+}
+
+.alert {
+    border-radius: 8px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 12px;
+}
+
+.user-info .user-name {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-info .user-name small {
+    font-size: 12px;
+    color: var(--text-secondary-color);
+}
+
+table th, table td {
+    vertical-align: middle !important;
+    white-space: nowrap;
+}
+
 
 /* =======================================================================
  *  DROPDOWN CUSTOM BOOTSTRAP 4
