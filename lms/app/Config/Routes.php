@@ -28,4 +28,14 @@ $routes->group('admin', ['filter' => ['auth', 'role_admin'], 'namespace' => Admi
         $routes->get('edit/(:any)', 'SiswaController::edit/$1', ['as' => 'admin.siswa.edit']);
         $routes->post('update', 'SiswaController::update', ['as' => 'admin.siswa.update']);
     });
+
+    // Admin > Guru Routes
+    $routes->group('guru', function ($routes) {
+        $routes->get('/', 'GuruController::index', ['as' => 'admin.guru']);
+        $routes->get('create', 'GuruController::create', ['as' => 'admin.guru.create']);
+        $routes->post('store', 'GuruController::store', ['as' => 'admin.guru.store']);
+        $routes->post('destroy', 'GuruController::destroy', ['as' => 'admin.guru.destroy']);
+        $routes->get('edit/(:any)', 'GuruController::edit/$1', ['as' => 'admin.guru.edit']);
+        $routes->post('update', 'GuruController::update', ['as' => 'admin.guru.update']);
+    });
 });

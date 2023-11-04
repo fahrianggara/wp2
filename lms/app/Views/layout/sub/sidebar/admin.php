@@ -32,7 +32,8 @@
 </li>
 
 <li class="nav-item">
-    <a href="#" class="nav-link <?= $menu === 'guru' ? 'active' : '' ?>">
+    <a href="<?= route_to('admin.guru') ?>" 
+        class="nav-link <?= $menu === 'guru' ? 'active' : '' ?>">
         <i class="nav-icon fas fa-user-tie"></i>
         <p>
             Guru
