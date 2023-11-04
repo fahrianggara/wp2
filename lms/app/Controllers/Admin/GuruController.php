@@ -136,13 +136,66 @@ class GuruController extends BaseController
     }
 
     /**
+     * Update the specified resource in storage.
+     * 
+     * @return void
+     */
+    public function update()
+    {
+        $request = $this->request;
+        $id = base64_decode($request->getVar('id'));
+        $tc_id = $this->db->table('teachers')->where('user_id', $id)->get()->getRow()->id;
+        
+        if (!$this->validate($this->rules(true, $id, $tc_id))) {
+            return redirect()->back()->withInput();
+        }
+
+        $this->db->transBegin();
+        try {
+            $old_picture = $request->getVar('old_picture');
+            $pictureName = ($request->getFile('picture') !== 4)
+                ? upload_picture($request,'images/pictures', $old_picture, true)
+                : $old_picture;
+
+            $this->userModel->save([
+                'id'            => $id, // set id agar tidak error 'id tidak boleh kosong
+                'first_name'    => $request->getVar('first_name'),
+                'last_name'     => $request->getVar('last_name'),
+                'id_number'     => $request->getVar('id_number'),
+                'email'         => $request->getVar('email'),
+                'gender'        => $request->getVar('gender'),
+                'religion'      => $request->getVar('religion'),
+                'picture'       => $pictureName,
+            ]);
+
+            $this->userModel->updateTeacher([
+                'code' => $request->getVar('code')
+            ], $id);
+
+            $this->teacherModel->syncClassrooms($tc_id, $request->getVar('classroom_ids'));
+
+            return redirect()->route('admin.guru')->with('success', 'Data guru berhasil diubah.');
+        } catch (\Throwable $th) {
+            $this->db->transRollback();
+            return redirect()->back()->withInput()->with('error', $th->getMessage());
+        } finally {
+            $this->db->transCommit();
+        }
+        
+    }
+
+    /**
      * Message for validation
      * 
+     * @param boolean $edit
+     * @param string|null $id
+     * @param string|null $tc_id
      * @return array
      */
-    private function rules($edit = false, $id = null)
+    private function rules($edit = false, $id = null, $tc_id = null)
     {
         $unique = $edit ? ",id,$id" : '';
+        $uqCode = $edit ? ",id,$tc_id": '';
 
         return [
             'first_name' => [
@@ -194,7 +247,7 @@ class GuruController extends BaseController
                 ]
             ],
             'code' => [
-                'rules' => "required|min_length[3]|max_length[5]|is_unique[teachers.code$unique]",
+                'rules' => "required|min_length[3]|max_length[5]|is_unique[teachers.code$uqCode]",
                 'errors' => [
                     'required' => 'Kode guru harus diisi.',
                     'min_length' => 'Kode guru minimal 3 karakter.',
