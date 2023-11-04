@@ -11,7 +11,7 @@ use Config\Services;
  */
 function selected_option($oldval, $value)
 {
-    if ($oldval === $value) {
+    if ($oldval == $value) {
         return 'selected';
     }
 }
@@ -54,25 +54,48 @@ function picture($user, $path)
 /**
  * Upload picture user.
  *
- * @param  mixed $picture
+ * @param  mixed $request
  * @param  mixed $path
+ * @param  mixed $old_picture
+ * @param  mixed $upload
  * @return string
  */
-function upload_picture($picture, $path)
+function upload_picture($request, $path, $old_picture = null, $upload = false)
 {
-    $pictureName = "picture.png";
-
-    if ($picture->getError() != 4) {
+    $picture = $request->getFile('picture');
+    $pictureName = $old_picture ?? 'picture.png';
+    
+    if ($picture->getError() != 4) 
+    {
         $pictureName = $picture->getRandomName();
 
         Services::image()
             ->withFile($picture)
             ->resize(400, 400, true, 'height')
             ->save("$path/$pictureName");
+
+        if ($old_picture && $upload) {
+            destroy_file($old_picture, $path);
+        }
     }
 
     return $pictureName;
 }
+// function upload_picture($picture, $path)
+// {
+//     $pictureName = "picture.png";
+
+//     if ($picture->getError() != 4) {
+//         $pictureName = $picture->getRandomName();
+
+//         Services::image()
+//             ->withFile($picture)
+//             ->resize(400, 400, true, 'height')
+//             ->save("$path/$pictureName");
+//     }
+
+//     return $pictureName;
+// }
 
 /**
  * Destroy file from storage.

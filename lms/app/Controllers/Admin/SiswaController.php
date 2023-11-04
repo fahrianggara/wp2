@@ -70,8 +70,7 @@ class SiswaController extends BaseController
         $this->db->transBegin();
         try {
             $request = $this->request;
-            $filePicture = $request->getFile('picture');
-            $picture = upload_picture($filePicture, 'images/pictures');
+            $picture = upload_picture($request, 'images/pictures');
 
             $this->userModel->save([
                 'first_name'    => $request->getVar('first_name'),
@@ -97,6 +96,78 @@ class SiswaController extends BaseController
         } finally {
             $this->db->transCommit();
         }
+    }
+
+    /**
+     * Edit the specified resource from storage.
+     * 
+     * @param string $id
+     * @return void
+     */
+    public function edit(string $id) 
+    {
+        $id = base64_decode($id);
+        $siswa = $this->userModel->where('id', $id)->with(['students'])->first();
+
+        if (!$siswa) // jika siswa tidak ditemukan
+            return redirect()->route('admin.siswa')->with('error', 'Data siswa tidak ditemukan.');
+
+        $siswa->classroom_id = $siswa->students[0]->classroom_id; // set classroom_id
+
+        return view('admin/siswa/edit', [
+            'title' => 'Edit Siswa',
+            'menu' => 'siswa',
+            'user' =>  $this->auth,
+            'classrooms' => (new ClassRoomModel())->findAll(),
+            'siswa' => $siswa,
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     * 
+     * @return void
+     */
+    public function update()
+    {
+        $request = $this->request;
+        $id = base64_decode($request->getVar('id'));
+        $user = $this->userModel->find($id);
+        
+        if (!$this->validate($this->rules(true, $id))) {
+            return redirect()->back()->withInput();
+        }
+
+        $this->db->transBegin();
+        try {
+            $old_picture = $request->getVar('old_picture');
+            $pictureName = ($request->getFile('picture') !== 4)
+                ? upload_picture($request,'images/pictures', $old_picture, true)
+                : $old_picture;
+
+            $this->userModel->save([
+                'id'            => $id, // set id agar tidak error 'id tidak boleh kosong
+                'first_name'    => $request->getVar('first_name'),
+                'last_name'     => $request->getVar('last_name'),
+                'id_number'     => $request->getVar('id_number'),
+                'email'         => $request->getVar('email'),
+                'gender'        => $request->getVar('gender'),
+                'religion'      => $request->getVar('religion'),
+                'picture'       => $pictureName,
+            ]);
+
+            $this->userModel->updateStudent([
+                'classroom_id' => $request->getVar('classroom_id'),
+            ], $id);
+
+            return redirect()->route('admin.siswa')->with('success', 'Data siswa berhasil diubah.');
+        } catch (\Throwable $th) {
+            $this->db->transRollback();
+            return redirect()->back()->withInput()->with('error', $th->getMessage());
+        } finally {
+            $this->db->transCommit();
+        }
+        
     }
 
     /**
@@ -137,8 +208,10 @@ class SiswaController extends BaseController
      * 
      * @return array
      */
-    private function rules()
+    private function rules($edit = false, $id = null)
     {
+        $unique = $edit ? ",id,$id" : '';
+
         return [
             'first_name' => [
                 'rules' => 'required|alpha_space|min_length[3]|max_length[15]',
@@ -159,7 +232,7 @@ class SiswaController extends BaseController
                 ]
             ],
             'id_number' => [
-                'rules' => 'required|numeric|is_unique[users.id_number]|min_length[8]|max_length[16]',
+                'rules' => "required|numeric|min_length[8]|max_length[16]|is_unique[users.id_number$unique]",
                 'errors' => [
                     'required' => 'Nomer Induk harus diisi.',
                     'numeric' => 'Nomer Induk hanya boleh berisi angka.',
@@ -169,7 +242,7 @@ class SiswaController extends BaseController
                 ]
             ],
             'email' => [
-                'rules' => 'required|valid_email|is_unique[users.email]',
+                'rules' => "required|valid_email|is_unique[users.email$unique]",
                 'errors' => [
                     'required' => 'Email harus diisi.',
                     'valid_email' => 'Email tidak valid.',

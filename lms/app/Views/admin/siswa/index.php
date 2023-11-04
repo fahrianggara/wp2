@@ -57,7 +57,7 @@
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item py-1" href="javascript:void(0);">
+                                                    <a href="<?= base_url("admin/siswa/edit/" . base64_encode($user->id)) ?>" class="dropdown-item py-1">
                                                         <i class="fas text-warning fa-pen mr-2"></i> Edit
                                                     </a>
                                                     <button type="button" value="<?= $user->id ?>" class="dropdown-item py-1 btn-delete"

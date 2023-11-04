@@ -27,7 +27,7 @@ class UserModel extends Model
 
         
     /**
-     * Get the student's full name.
+     * Insert new student data.
      *
      * @param  mixed $user
      * @return void
@@ -35,5 +35,16 @@ class UserModel extends Model
     public function insertStudent($data)
     {
         $this->db->table('students')->insert($data);
+    }
+
+    /**
+     * Update student data.
+     *
+     * @param  mixed $user
+     * @return void
+     */
+    public function updateStudent($data, $id)
+    {
+        $this->db->table('students')->update($data, ['user_id' => $id]);
     }
 }
