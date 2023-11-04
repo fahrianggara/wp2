@@ -38,15 +38,7 @@
                                             $classroom = $classrooms->where('id', $classroom_id)->first();
                                         ?>
                                         <td><?= $no++ ?></td>
-                                        <td>
-                                            <div class="user-info">
-                                                <img src="<?= $user->photo ?>">
-                                                <div class="user-name">
-                                                    <span><?= $user->full_name ?></span>
-                                                    <small><?= $user->id_number ?></small>
-                                                </div>
-                                            </div>
-                                        </td>
+                                        <td><?= user_info($user) ?></td>
                                         <td><?= $classroom->name ?></td>
                                         <td><?= remove_underscore($user->gender) ?></td>
                                         <td><?= ucfirst($user->religion) ?></td>

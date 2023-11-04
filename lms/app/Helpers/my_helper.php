@@ -81,21 +81,6 @@ function upload_picture($request, $path, $old_picture = null, $upload = false)
 
     return $pictureName;
 }
-// function upload_picture($picture, $path)
-// {
-//     $pictureName = "picture.png";
-
-//     if ($picture->getError() != 4) {
-//         $pictureName = $picture->getRandomName();
-
-//         Services::image()
-//             ->withFile($picture)
-//             ->resize(400, 400, true, 'height')
-//             ->save("$path/$pictureName");
-//     }
-
-//     return $pictureName;
-// }
 
 /**
  * Destroy file from storage.
@@ -108,4 +93,23 @@ function destroy_file($filename, $path)
 {
     $pathUrl = "$path/$filename";
     if (file_exists($pathUrl)) unlink($pathUrl);
+}
+
+/**
+ * Get user info.
+ *
+ * @param  mixed $user
+ * @return void
+ */
+function user_info($user) 
+{
+    return "
+        <div class='user-info'>
+            <img src='$user->photo'>
+            <div class='user-name'>
+                <span>$user->full_name</span>
+                <small>$user->id_number</small>
+            </div>
+        </div>
+    ";
 }
