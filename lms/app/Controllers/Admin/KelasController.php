@@ -149,28 +149,6 @@ class KelasController extends BaseController
         $this->db->transBegin();
         try {
             $id = base64_decode($this->request->getVar('id'));
-            $kelas = $this->classroomModel->find($id);
-            $kelas->name = trim(strtoupper($kelas->name));
-
-            $teachers = $this->db->table('teacher_classrooms')->where('classroom_id', $id)->countAllResults();
-            $students = $this->db->table('students')->where('classroom_id', $id)->countAllResults();
-
-            if ($students && $teachers) {
-                return $this->response->setJSON([
-                    'status' => 400,
-                    'message' => "Data kelas $kelas->name tidak dapat dihapus karena sedang digunakan oleh <b>$students siswa</b> dan <b>$teachers guru</b>."
-                ]);
-            } elseif ($students) {
-                return $this->response->setJSON([
-                    'status' => 400,
-                    'message' => "Data kelas $kelas->name tidak dapat dihapus karena sedang digunakan oleh <b>$students siswa</b>."
-                ]);
-            } elseif ($teachers) {
-                return $this->response->setJSON([
-                    'status' => 400,
-                    'message' => "Data kelas $kelas->name tidak dapat dihapus karena sedang digunakan oleh <b>$teachers guru</b>."
-                ]);
-            }
 
             $this->classroomModel->delete($id); 
 
