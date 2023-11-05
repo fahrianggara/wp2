@@ -39,7 +39,7 @@
                                         ?>
                                         <td><?= $no++ ?></td>
                                         <td><?= user_info($user) ?></td>
-                                        <td><?= upcase($classroom->name) ?></td>
+                                        <td><?= $classroom ? upcase($classroom->name) : '<span class="badge badge-danger">Tidak ada</span>' ?></td>
                                         <td><?= remove_underscore($user->gender) ?></td>
                                         <td><?= ucfirst($user->religion) ?></td>
                                         <td>

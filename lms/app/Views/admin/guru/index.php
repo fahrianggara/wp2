@@ -41,11 +41,16 @@
                                         <td><?= user_info($user) ?></td>
                                         <td><?= $teacher->code ?></td>
                                         <td>
-                                            <?php foreach ($classes as $class): ?>
-                                                <span class="badge badge-primary">
-                                                    <?= upcase($db->table('classrooms')->where('id', $class->classroom_id)->get()->getRow()->name); ?>
-                                                </span>
-                                            <?php endforeach ?>
+                                            <?php if ($classes): ?>
+                                                <?php foreach ($classes as $class): ?>
+                                                    <?php $clsName = $db->table('classrooms')->where('id', $class->classroom_id)->get()->getRow()->name; ?>
+                                                    <span class="badge badge-primary">
+                                                        <?= $clsName ? upcase($clsName) : ''; ?>
+                                                    </span>
+                                                <?php endforeach ?>
+                                            <?php else: ?>
+                                                <span class="badge badge-danger">Tidak ada</span>
+                                            <?php endif ?>
                                         </td>
                                         <td><?= remove_underscore($user->gender) ?></td>
                                         <td><?= ucfirst($user->religion) ?></td>
