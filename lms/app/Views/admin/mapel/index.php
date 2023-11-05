@@ -27,7 +27,32 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $no = 1 ?>
+                            <?php $no = 1 ?>
+                                <?php foreach($subjects as $subject): ?>
+                                    <tr>
+                                        <td><?= $no++ ?></td>
+                                        <td><?= $subject->name ?></td>
+                                        <td><?= $subject->code ?></td>
+                                        <td>
+                                            <div class="btn-group dropleft">
+                                                <button class="btn btn-sm btn-more dropdown-toggle"
+                                                    data-toggle="dropdown" aria-expanded="false" data-display="static">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="<?= base_url("admin/mapel/edit/" . base64_encode($subject->id)) ?>" class="dropdown-item py-1">
+                                                        <i class="fas text-warning fa-pen mr-2"></i> Edit
+                                                    </a>
+                                                    <button type="button" value="<?= base64_encode($subject->id) ?>" class="dropdown-item py-1 btn-delete"
+                                                        data-name="<?= strtoupper($subject->name) ?>"
+                                                        data-action="<?= route_to('admin.mapel.destroy') ?>">
+                                                        <i class="fas text-danger fa-trash mr-2"></i> Hapus
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
                             </tbody>
                         </table>
                     </div>

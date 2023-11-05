@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Models\SubjectModel;
 use App\Models\UserModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class MapelController extends BaseController
 {    
@@ -79,6 +80,37 @@ class MapelController extends BaseController
         } catch (\Throwable $th) {
             $this->db->transRollback();
             return redirect()->back()->withInput()->with('error', $th->getMessage());
+        } finally {
+            $this->db->transCommit();
+        }
+    }
+
+    /**
+     * Destroy the specified resource from storage.
+     * 
+     * @return void
+     */
+    public function destroy()
+    {
+        if (!$this->request->isAJAX()) //  jika akses lewat url
+            throw PageNotFoundException::forPageNotFound(); 
+
+        $this->db->transBegin();
+        try {
+            $id = base64_decode($this->request->getVar('id'));
+
+            $this->subjectModel->delete($id); 
+
+            return $this->response->setJSON([
+                'status' => 200,
+                'message' => 'Data mapel berhasil dihapus.'
+            ]);
+        } catch (\Throwable $th) {
+            $this->db->transRollback();
+            return $this->response->setJSON([
+                'status' => 400,
+                'message' => $th->getMessage()
+            ]);
         } finally {
             $this->db->transCommit();
         }
