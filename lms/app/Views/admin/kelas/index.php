@@ -84,6 +84,54 @@
 
 <script>
     const table = $("#table-kelas").DataTable();
+    const btnDelete = $(".btn-delete");
+
+    btnDelete.on("click", function(e) {
+        e.preventDefault();
+
+        const id = $(this).val();
+        const name = $(this).data("name");
+        const action = $(this).data("action");
+
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+            html: `Akan menghapus data kelas <b>${name}</b>`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: action,
+                    type: "POST",
+                    data: {id: id},
+                    success: function(res) {
+                        if (res.status === 200) {
+                            Swal.fire({
+                                title: 'Berhasil!',
+                                html: res.message,
+                                icon: 'success',
+                                allowOutsideClick: false,
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                html: res.message,
+                                icon: 'error',
+                                confirmButtonText: 'Tutup',
+                            });
+                        }
+                    },
+                });
+            }
+        });
+    });
 </script>
 
 <?= $this->endSection() ?>

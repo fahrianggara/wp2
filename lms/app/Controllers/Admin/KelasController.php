@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Models\ClassroomModel;
 use App\Models\UserModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class KelasController extends BaseController
 {    
@@ -130,6 +131,59 @@ class KelasController extends BaseController
         } catch (\Throwable $th) {
             $this->db->transRollback();
             return redirect()->back()->withInput()->with('error', $th->getMessage());
+        } finally {
+            $this->db->transCommit();
+        }
+    }
+
+    /**
+     * Destroy the specified resource from storage.
+     * 
+     * @return void
+     */
+    public function destroy()
+    {
+        if (!$this->request->isAJAX()) //  jika akses lewat url
+            throw PageNotFoundException::forPageNotFound(); 
+
+        $this->db->transBegin();
+        try {
+            $id = base64_decode($this->request->getVar('id'));
+            $kelas = $this->classroomModel->find($id);
+            $kelas->name = trim(strtoupper($kelas->name));
+
+            $teachers = $this->db->table('teacher_classrooms')->where('classroom_id', $id)->countAllResults();
+            $students = $this->db->table('students')->where('classroom_id', $id)->countAllResults();
+
+            if ($students && $teachers) {
+                return $this->response->setJSON([
+                    'status' => 400,
+                    'message' => "Data kelas $kelas->name tidak dapat dihapus karena sedang digunakan oleh <b>$students siswa</b> dan <b>$teachers guru</b>."
+                ]);
+            } elseif ($students) {
+                return $this->response->setJSON([
+                    'status' => 400,
+                    'message' => "Data kelas $kelas->name tidak dapat dihapus karena sedang digunakan oleh <b>$students siswa</b>."
+                ]);
+            } elseif ($teachers) {
+                return $this->response->setJSON([
+                    'status' => 400,
+                    'message' => "Data kelas $kelas->name tidak dapat dihapus karena sedang digunakan oleh <b>$teachers guru</b>."
+                ]);
+            }
+
+            $this->classroomModel->delete($id); 
+
+            return $this->response->setJSON([
+                'status' => 200,
+                'message' => 'Data kelas berhasil dihapus.'
+            ]);
+        } catch (\Throwable $th) {
+            $this->db->transRollback();
+            return $this->response->setJSON([
+                'status' => 400,
+                'message' => $th->getMessage()
+            ]);
         } finally {
             $this->db->transCommit();
         }
