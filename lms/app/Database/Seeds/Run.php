@@ -10,5 +10,6 @@ class Run extends Seeder
     {
         $this->call('UserSeeder');
         $this->call('ClassroomSeeder');
+        $this->call('SubjectSeeder');
     }
 }
