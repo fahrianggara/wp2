@@ -123,11 +123,15 @@ class GuruController extends BaseController
         $guru = $user->teachers[0]; // get teacher
         $user->code = $guru->code; // set code
         $teacher_classrooms = $this->db->table('teacher_classrooms')->where('teacher_id', $guru->id)->get()->getResult();
+        $teacher_subjects = $this->db->table('teacher_subjects')->where('teacher_id', $guru->id)->get()->getResult();
 
         // get classroom ids
         $classroom_ids = [];
-        foreach ($teacher_classrooms as $tc)
-            $classroom_ids[] = $tc->classroom_id;
+        foreach ($teacher_classrooms as $tc) $classroom_ids[] = $tc->classroom_id;
+
+        // get subject ids
+        $subject_ids = [];
+        foreach ($teacher_subjects as $tc) $subject_ids[] = $tc->subject_id;
         
         return view('admin/guru/edit', [
             'title' => 'Edit Guru',
@@ -135,6 +139,8 @@ class GuruController extends BaseController
             'user' =>  $this->auth,
             'classrooms' => (new ClassroomModel())->findAll(),
             'classroom_ids' => $classroom_ids,
+            'subjects' => (new SubjectModel())->findAll(),
+            'subject_ids' => $subject_ids,
             'guru' => $user,
         ]);
     }
@@ -177,6 +183,7 @@ class GuruController extends BaseController
             ], $id);
 
             $this->teacherModel->syncClassrooms($tc_id, $request->getVar('classroom_ids'));
+            $this->teacherModel->syncSubjects($tc_id, $request->getVar('subject_ids'));
 
             return redirect()->route('admin.guru')->with('success', 'Data guru berhasil diubah.');
         } catch (\Throwable $th) {

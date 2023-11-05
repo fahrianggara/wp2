@@ -157,6 +157,23 @@
                                 <?= validation_show_error('classroom_ids') ?>
                             </div>
                         </div>
+                        <div class="form-group col-lg-6">
+                            <label for="subject_ids" wajib>Kelas Mengajar</label>
+
+                            <select name="subject_ids[]" id="subject_ids" multiple
+                                class="custom-select <?= validation_show_error('subject_ids') ? 'is-invalid' : '' ?>">
+                                <?php foreach ($subjects as $subject) : ?>
+                                    <option <?= in_array($subject->id, $subject_ids) ? 'selected' : '' ?>
+                                        value="<?= $subject->id ?>">
+                                        <?= $subject->name ?>
+                                    </option>
+                                <?php endforeach ?>
+                            </select>
+
+                            <div class="invalid-feedback d-block">
+                                <?= validation_show_error('subject_ids') ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
