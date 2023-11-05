@@ -3,7 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\ClassRoomModel;
+use App\Models\ClassroomModel;
 use App\Models\TeacherModel;
 use App\Models\UserModel;
 use Carbon\Carbon;
@@ -55,7 +55,7 @@ class GuruController extends BaseController
             'title' => 'Tambah Guru',
             'menu' => 'guru',
             'user' =>  $this->auth,
-            'classrooms' => (new ClassRoomModel())->findAll(),
+            'classrooms' => (new ClassroomModel())->findAll(),
         ]);
     }
 
@@ -130,7 +130,7 @@ class GuruController extends BaseController
             'title' => 'Edit Guru',
             'menu' => 'guru',
             'user' =>  $this->auth,
-            'classrooms' => (new ClassRoomModel())->findAll(),
+            'classrooms' => (new ClassroomModel())->findAll(),
             'classroom_ids' => $classroom_ids,
             'guru' => $user,
         ]);

@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Entities\ClassRoom;
+use App\Entities\Classroom;
 use CodeIgniter\Model;
 
-class ClassRoomModel extends Model
+class ClassroomModel extends Model
 {
     protected $table            = 'classrooms';
-    protected $returnType       = ClassRoom::class;
+    protected $returnType       = Classroom::class;
     protected $useTimestamps    = true;
     protected $allowedFields    = [
         'name'

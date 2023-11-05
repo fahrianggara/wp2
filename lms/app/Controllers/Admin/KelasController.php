@@ -3,7 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\ClassRoomModel;
+use App\Models\ClassroomModel;
 use App\Models\UserModel;
 
 class KelasController extends BaseController
@@ -17,7 +17,7 @@ class KelasController extends BaseController
      */
     public function __construct()
     {
-        $this->classroomModel = new ClassRoomModel();
+        $this->classroomModel = new ClassroomModel();
         $this->db = \Config\Database::connect();
         $this->userModel = new UserModel();
         $this->auth = $this->userModel->where('id', session()->get('id'))->first();

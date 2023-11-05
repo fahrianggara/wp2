@@ -4,7 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\UserModel;
-use App\Models\ClassRoomModel;
+use App\Models\ClassroomModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use Config\Services;
 
@@ -52,7 +52,7 @@ class SiswaController extends BaseController
             'title' => 'Tambah Siswa',
             'menu' => 'siswa',
             'user' =>  $this->auth,
-            'classrooms' => (new ClassRoomModel())->findAll(),
+            'classrooms' => (new ClassroomModel())->findAll(),
         ]);
     }
 
@@ -118,7 +118,7 @@ class SiswaController extends BaseController
             'title' => 'Edit Siswa',
             'menu' => 'siswa',
             'user' =>  $this->auth,
-            'classrooms' => (new ClassRoomModel())->findAll(),
+            'classrooms' => (new ClassroomModel())->findAll(),
             'siswa' => $siswa,
         ]);
     }

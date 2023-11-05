@@ -34,7 +34,7 @@
                                     <tr>
                                         <?php 
                                             $classroom_id = $user->students[0]->classroom_id;
-                                            $classrooms = new \App\Models\ClassRoomModel();
+                                            $classrooms = new \App\Models\ClassroomModel();
                                             $classroom = $classrooms->where('id', $classroom_id)->first();
                                         ?>
                                         <td><?= $no++ ?></td>
