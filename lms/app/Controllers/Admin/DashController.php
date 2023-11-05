@@ -7,7 +7,7 @@ use App\Models\UserModel;
 
 class DashController extends BaseController
 {    
-    protected $userModel, $db;
+    protected $userModel, $db, $auth;
 
     /**
      * constructor.
@@ -18,6 +18,7 @@ class DashController extends BaseController
     {
         $this->userModel = new UserModel();
         $this->db = \Config\Database::connect();
+        $this->auth = $this->userModel->authUser();
     }
 
     /**
@@ -27,12 +28,10 @@ class DashController extends BaseController
      */
     public function index()
     {
-        $user = $this->userModel->where('id', session()->get('id'))->first();
-
         return view('admin/dash', [
             'title' => 'Dashboard',
             'menu' => 'dashboard',
-            'user' => $user
+            'user'  => $this->auth,
         ]);
     }
 }

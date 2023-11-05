@@ -69,4 +69,13 @@ class UserModel extends Model
     {
         $this->db->table('teachers')->update($data, ['user_id' => $id]);
     }
+
+    /**
+     * Authentication user
+     * 
+     */
+    public function authUser()
+    {
+        return $this->where('id', session()->get('id'))->first();
+    }
 }

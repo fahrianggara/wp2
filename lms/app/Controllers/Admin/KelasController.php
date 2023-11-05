@@ -20,8 +20,9 @@ class KelasController extends BaseController
         $this->classroomModel = new ClassroomModel();
         $this->db = \Config\Database::connect();
         $this->userModel = new UserModel();
-        $this->auth = $this->userModel->where('id', session()->get('id'))->first();
+        $this->auth = $this->userModel->authUser();
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,6 +38,20 @@ class KelasController extends BaseController
             'user'  => $this->auth,
             'classrooms' => $classrooms,
             'db'    => $this->db
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     * 
+     * @return void
+     */
+    public function create()
+    {
+        return view('admin/kelas/create', [
+            'title' => 'Tambah Kelas',
+            'menu' => 'kelas',
+            'user' =>  $this->auth,
         ]);
     }
 }

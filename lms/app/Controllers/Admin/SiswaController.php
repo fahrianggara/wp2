@@ -21,7 +21,7 @@ class SiswaController extends BaseController
     {
         $this->userModel = new UserModel();
         $this->db = \Config\Database::connect();
-        $this->auth = $this->userModel->where('id', session()->get('id'))->first();
+        $this->auth = $this->userModel->authUser();
     }
     
     /**
