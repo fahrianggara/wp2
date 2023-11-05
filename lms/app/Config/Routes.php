@@ -38,4 +38,14 @@ $routes->group('admin', ['filter' => ['auth', 'role_admin'], 'namespace' => Admi
         $routes->get('edit/(:any)', 'GuruController::edit/$1', ['as' => 'admin.guru.edit']);
         $routes->post('update', 'GuruController::update', ['as' => 'admin.guru.update']);
     });
+
+    // Admin > Kelas Routes
+    $routes->group('kelas', function ($routes) {
+        $routes->get('/', 'KelasController::index', ['as' => 'admin.kelas']);
+        $routes->get('create', 'KelasController::create', ['as' => 'admin.kelas.create']);
+        $routes->post('store', 'KelasController::store', ['as' => 'admin.kelas.store']);
+        $routes->post('destroy', 'KelasController::destroy', ['as' => 'admin.kelas.destroy']);
+        $routes->get('edit/(:any)', 'KelasController::edit/$1', ['as' => 'admin.kelas.edit']);
+        $routes->post('update', 'KelasController::update', ['as' => 'admin.kelas.update']);
+    });
 });

@@ -1,4 +1,4 @@
-<li class="nav-header">Menu</li>
+<li class="nav-header">Beranda</li>
 
 <li class="nav-item">
     <a href="<?= route_to('admin.dash') ?>"
@@ -42,7 +42,8 @@
 </li>
 
 <li class="nav-item">
-    <a href="#" class="nav-link <?= $menu === 'kelas' ? 'active' : '' ?>">
+    <a href="<?= route_to('admin.kelas') ?>" 
+        class="nav-link <?= $menu === 'kelas' ? 'active' : '' ?>">
         <i class="nav-icon fas fa-chalkboard-teacher"></i>
         <p>
             Kelas
