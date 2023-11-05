@@ -36,4 +36,26 @@ class TeacherModel extends Model
 
         $this->db->table('teacher_classrooms')->insertBatch($data);
     }
+
+    /**
+     * Insert relation data to teacher_subjects table.
+     *
+     * @param  mixed $teacherId
+     * @param  mixed $subjectIds
+     * @return void
+     */
+    public function syncSubjects($teacherId, $subjectIds)
+    {
+        $this->db->table('teacher_subjects')->where('teacher_id', $teacherId)->delete();
+
+        $data = [];
+        foreach ($subjectIds as $subjectId) {
+            $data[] = [
+                'teacher_id' => $teacherId,
+                'subject_id' => $subjectId,
+            ];
+        }
+
+        $this->db->table('teacher_subjects')->insertBatch($data);
+    }
 }

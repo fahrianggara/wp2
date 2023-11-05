@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\ClassroomModel;
+use App\Models\SubjectModel;
 use App\Models\TeacherModel;
 use App\Models\UserModel;
 use Carbon\Carbon;
@@ -56,6 +57,7 @@ class GuruController extends BaseController
             'menu' => 'guru',
             'user' =>  $this->auth,
             'classrooms' => (new ClassroomModel())->findAll(),
+            'subjects' => (new SubjectModel())->findAll(),
         ]);
     }
 
@@ -93,6 +95,7 @@ class GuruController extends BaseController
             ]);
 
             $this->teacherModel->syncClassrooms($this->db->insertID(), $request->getVar('classroom_ids'));
+            $this->teacherModel->syncSubjects($this->db->insertID(), $request->getVar('subject_ids'));
 
             return redirect()->route('admin.guru')->with('success', 'Data guru berhasil ditambahkan.');
         } catch (\Throwable $th) {
@@ -277,6 +280,12 @@ class GuruController extends BaseController
                 'rules' => 'required',
                 'errors'=> [
                     'required' => 'Kelas mengajar guru harus diisi.'
+                ]
+            ],
+            'subject_ids' => [
+                'rules' => 'required',
+                'errors'=> [
+                    'required' => 'Mata pelajaran guru harus diisi.'
                 ]
             ],
             'code' => [
