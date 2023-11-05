@@ -54,4 +54,54 @@ class KelasController extends BaseController
             'user' =>  $this->auth,
         ]);
     }
+
+    /**
+     * Store a newly created resource in storage.
+     * 
+     * @return void
+     */
+    public function store()
+    {
+        if (!$this->validate($this->rules())) {
+            return redirect()->back()->withInput();
+        }
+
+        $this->db->transBegin();
+        try {
+            $request = $this->request;
+            
+            $this->classroomModel->save([
+                'name'    => trim(strtolower($request->getVar('name'))),
+            ]);
+
+            return redirect()->route('admin.kelas')->with('success', 'Data kelas berhasil ditambahkan.');
+        } catch (\Throwable $th) {
+            $this->db->transRollback();
+            return redirect()->back()->withInput()->with('error', $th->getMessage());
+        } finally {
+            $this->db->transCommit();
+        }
+    }
+
+    /**
+     * Create rules validation.
+     * 
+     * @param  mixed $id
+     * @return array
+     */
+    public function rules($id = null)
+    {
+        $unique = $id ? ",id,$id" : '';
+
+        return [
+            'name' => [
+                'rules' => "required|is_unique[classrooms.name$unique]|max_length[20]",
+                'errors' => [
+                    'required' => 'Nama kelas harus diisi.',
+                    'is_unique' => 'Nama kelas sudah ada.',
+                    'max_length' => 'Nama kelas maksimal 20 karakter.'
+                ]
+            ]
+        ];
+    }
 }
