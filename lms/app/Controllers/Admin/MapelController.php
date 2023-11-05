@@ -86,6 +86,59 @@ class MapelController extends BaseController
     }
 
     /**
+     * Edit the specified resource from storage.
+     * 
+     * @param string $id
+     * @return void
+     */
+    public function edit(string $id) 
+    {
+        $id = base64_decode($id);
+        $mapel = $this->subjectModel->where('id', $id)->first();
+
+        if (!$mapel) // jika mapel tidak ditemukan
+            return redirect()->route('admin.mapel')->with('error', 'Data mapel tidak ditemukan.');
+        
+        return view('admin/mapel/edit', [
+            'title' => 'Edit Mata Pelajaran',
+            'menu' => 'mapel',
+            'user' =>  $this->auth,
+            'mapel' => $mapel,
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     * 
+     * @return void
+     */
+    public function update()
+    {
+        $request = $this->request;
+        $id = base64_decode($request->getVar('id'));
+        
+        if (!$this->validate($this->rules($id))) {
+            return redirect()->back()->withInput();
+        }
+
+        $this->db->transBegin();
+        try {
+            $this->subjectModel->save([
+                'id'      => $id, // set id agar tidak error 'id tidak boleh kosong
+                'name'    => $request->getVar('name'), 
+                'code'    => trim(strtolower($request->getVar('code'))),
+            ]);
+
+            return redirect()->route('admin.mapel')->with('success', 'Data mapel berhasil diubah.');
+        } catch (\Throwable $th) {
+            $this->db->transRollback();
+            return redirect()->back()->withInput()->with('error', $th->getMessage());
+        } finally {
+            $this->db->transCommit();
+        }
+    }
+
+    /**
      * Destroy the specified resource from storage.
      * 
      * @return void
