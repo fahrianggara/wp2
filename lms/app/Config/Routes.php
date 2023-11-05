@@ -48,4 +48,14 @@ $routes->group('admin', ['filter' => ['auth', 'role_admin'], 'namespace' => Admi
         $routes->get('edit/(:any)', 'KelasController::edit/$1', ['as' => 'admin.kelas.edit']);
         $routes->post('update', 'KelasController::update', ['as' => 'admin.kelas.update']);
     });
+
+    // Admin > Mapel Routes
+    $routes->group('mapel', function ($routes) {
+        $routes->get('/', 'MapelController::index', ['as' => 'admin.mapel']);
+        $routes->get('create', 'MapelController::create', ['as' => 'admin.mapel.create']);
+        $routes->post('store', 'MapelController::store', ['as' => 'admin.mapel.store']);
+        $routes->post('destroy', 'MapelController::destroy', ['as' => 'admin.mapel.destroy']);
+        $routes->get('edit/(:any)', 'MapelController::edit/$1', ['as' => 'admin.mapel.edit']);
+        $routes->post('update', 'MapelController::update', ['as' => 'admin.mapel.update']);
+    });
 });

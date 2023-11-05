@@ -52,7 +52,17 @@
 </li>
 
 <li class="nav-item">
-    <a href="#" class="nav-link <?= $menu === 'mapel' ? 'active' : '' ?>">
+    <a href="<?= route_to('admin.mapel') ?>" 
+        class="nav-link <?= $menu === 'mapel' ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-book"></i>
+        <p>
+            Mata Pelajaran
+        </p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a href="#" class="nav-link <?= $menu === 'jadwal' ? 'active' : '' ?>">
         <i class="nav-icon fas fa-calendar-alt"></i>
         <p>
             Jadwal Kelas
