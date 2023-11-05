@@ -42,11 +42,15 @@
                                         <td><?= $no++ ?></td>
                                         <td><?= strtoupper($classroom->name) ?></td>
                                         <td>
-                                            <?php foreach($users as $user): ?>
-                                                <span class="badge badge-primary">
-                                                    <?= "$user->first_name ($user->number)" ?>
-                                                </span>
-                                            <?php endforeach ?>
+                                            <?php if ($users): ?>
+                                                <?php foreach($users as $user): ?>
+                                                    <span class="badge badge-primary">
+                                                        <?= "$user->first_name ($user->number)" ?>
+                                                    </span>
+                                                <?php endforeach ?>
+                                            <?php else: ?>
+                                                <span class="badge badge-secondary">Belum ada siswa</span>
+                                            <?php endif ?>
                                         </td>
                                         <td>
                                             <div class="btn-group dropleft">
