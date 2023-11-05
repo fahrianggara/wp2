@@ -28,6 +28,17 @@ function remove_underscore($string)
 }
 
 /**
+ * uppercase from string.
+ *
+ * @param  mixed $string
+ * @return void
+ */
+function upcase($string)
+{
+    return strtoupper($string);
+}
+
+/**
  * Get full name of user.
  *
  * @param  mixed $user

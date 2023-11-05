@@ -116,7 +116,7 @@
                                 <option value="" disabled selected>Silahkan pilih</option>
                                 <?php foreach ($classrooms as $classroom) : ?>
                                     <option <?= selected_option(old('classroom_id'), $classroom->id) ?> value="<?= $classroom->id ?>">
-                                        <?= $classroom->name ?>
+                                        <?= upcase($classroom->name) ?>
                                     </option>
                                 <?php endforeach ?>
                             </select>

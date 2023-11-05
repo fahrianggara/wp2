@@ -39,7 +39,7 @@
                                         ?>
                                         <td><?= $no++ ?></td>
                                         <td><?= user_info($user) ?></td>
-                                        <td><?= $classroom->name ?></td>
+                                        <td><?= upcase($classroom->name) ?></td>
                                         <td><?= remove_underscore($user->gender) ?></td>
                                         <td><?= ucfirst($user->religion) ?></td>
                                         <td>

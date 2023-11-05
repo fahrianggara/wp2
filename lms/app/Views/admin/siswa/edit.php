@@ -115,7 +115,7 @@
                                 class="custom-select <?= validation_show_error('classroom_id') ? 'is-invalid' : '' ?>">
                                 <?php foreach ($classrooms as $classroom) : ?>
                                     <option <?= selected_option($siswa->classroom_id, $classroom->id) ?> 
-                                        value="<?= $classroom->id ?>"> <?= $classroom->name ?>
+                                        value="<?= $classroom->id ?>"> <?= upcase($classroom->name) ?>
                                     </option>
                                 <?php endforeach ?>
                             </select>

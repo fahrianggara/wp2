@@ -43,7 +43,7 @@
                                         <td>
                                             <?php foreach ($classes as $class): ?>
                                                 <span class="badge badge-primary">
-                                                    <?= $db->table('classrooms')->where('id', $class->classroom_id)->get()->getRow()->name; ?>
+                                                    <?= upcase($db->table('classrooms')->where('id', $class->classroom_id)->get()->getRow()->name); ?>
                                                 </span>
                                             <?php endforeach ?>
                                         </td>

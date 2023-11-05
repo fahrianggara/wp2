@@ -148,7 +148,7 @@
                                 <?php foreach ($classrooms as $classroom) : ?>
                                     <option <?= in_array($classroom->id, $classroom_ids) ? 'selected' : '' ?>
                                         value="<?= $classroom->id ?>">
-                                        <?= $classroom->name ?>
+                                        <?= upcase($classroom->name) ?>
                                     </option>
                                 <?php endforeach ?>
                             </select>

@@ -142,7 +142,7 @@
                                 <?php foreach ($classrooms as $classroom) : ?>
                                     <option  
                                         value="<?= $classroom->id ?>">
-                                        <?= $classroom->name ?>
+                                        <?= upcase($classroom->name) ?>
                                     </option>
                                 <?php endforeach ?>
                             </select>
