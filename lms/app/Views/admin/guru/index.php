@@ -24,6 +24,7 @@
                                     <th>Guru</th>
                                     <th>Kode Guru</th>
                                     <th>Kelas Mengajar</th>
+                                    <th>Mapel</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Agama</th>
                                     <th>&nbsp;</th>
@@ -36,6 +37,7 @@
                                         <?php 
                                             $teacher = $user->teachers[0];
                                             $classes = $db->table('teacher_classrooms')->where('teacher_id', $teacher->id)->get()->getResult();
+                                            $subjects = $db->table('teacher_subjects')->where('teacher_id', $teacher->id)->get()->getResult();
                                         ?>
                                         <td><?= $no++ ?></td>
                                         <td><?= user_info($user) ?></td>
@@ -46,6 +48,18 @@
                                                     <?php $clsName = $db->table('classrooms')->where('id', $class->classroom_id)->get()->getRow()->name; ?>
                                                     <span class="badge badge-primary">
                                                         <?= $clsName ? upcase($clsName) : ''; ?>
+                                                    </span>
+                                                <?php endforeach ?>
+                                            <?php else: ?>
+                                                <span class="badge badge-danger">Tidak ada</span>
+                                            <?php endif ?>
+                                        </td>
+                                        <td>
+                                            <?php if ($subjects): ?>
+                                                <?php foreach ($subjects as $row): ?>
+                                                    <?php $code = $db->table('subjects')->where('id', $row->subject_id)->get()->getRow()->code; ?>
+                                                    <span class="badge badge-primary">
+                                                        <?= $code ? upcase($code) : ''; ?>
                                                     </span>
                                                 <?php endforeach ?>
                                             <?php else: ?>
