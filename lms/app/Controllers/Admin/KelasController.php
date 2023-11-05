@@ -69,12 +69,64 @@ class KelasController extends BaseController
         $this->db->transBegin();
         try {
             $request = $this->request;
-            
+
             $this->classroomModel->save([
                 'name'    => trim(strtolower($request->getVar('name'))),
             ]);
 
             return redirect()->route('admin.kelas')->with('success', 'Data kelas berhasil ditambahkan.');
+        } catch (\Throwable $th) {
+            $this->db->transRollback();
+            return redirect()->back()->withInput()->with('error', $th->getMessage());
+        } finally {
+            $this->db->transCommit();
+        }
+    }
+
+    /**
+     * Edit the specified resource from storage.
+     * 
+     * @param string $id
+     * @return void
+     */
+    public function edit(string $id) 
+    {
+        $id = base64_decode($id);
+        $kelas = $this->classroomModel->where('id', $id)->first();
+
+        if (!$kelas) // jika kelas tidak ditemukan
+            return redirect()->route('admin.kelas')->with('error', 'Data kelas tidak ditemukan.');
+        
+        return view('admin/kelas/edit', [
+            'title' => 'Edit Kelas',
+            'menu' => 'kelas',
+            'user' =>  $this->auth,
+            'kelas' => $kelas,
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     * 
+     * @return void
+     */
+    public function update()
+    {
+        $request = $this->request;
+        $id = base64_decode($request->getVar('id'));
+        
+        if (!$this->validate($this->rules($id))) {
+            return redirect()->back()->withInput();
+        }
+
+        $this->db->transBegin();
+        try {
+            $this->classroomModel->save([
+                'id'      => $id, // set id agar tidak error 'id tidak boleh kosong
+                'name'    => trim(strtolower($request->getVar('name'))),
+            ]);
+
+            return redirect()->route('admin.kelas')->with('success', 'Data kelas berhasil diubah.');
         } catch (\Throwable $th) {
             $this->db->transRollback();
             return redirect()->back()->withInput()->with('error', $th->getMessage());
