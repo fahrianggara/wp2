@@ -20,6 +20,7 @@ $routes->group('profile', ['filter' => ['auth']], function ($routes) {
     $routes->get('/', 'ProfileController::index', ['as' => 'profile']);
     $routes->post('change-photo', 'ProfileController::changePhoto', ['as' => 'profile.change_photo']);
     $routes->post('remove-photo', 'ProfileController::removePhoto', ['as' => 'profile.remove_photo']);
+    $routes->post('change-password', 'ProfileController::changePassword', ['as' => 'profile.change_password']);
 });
 
 // Admin Routes

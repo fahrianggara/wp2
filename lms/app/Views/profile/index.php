@@ -43,6 +43,31 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-lg-9">
+            <div class="card">
+                <div class="card-header p-1">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#information" data-toggle="tab">
+                                Biodata Diri
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#password" data-toggle="tab">
+                                Kata Sandi
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <?= $this->include('profile/tab-bio') ?>
+                        <?= $this->include('profile/tab-password') ?>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -57,4 +82,5 @@
 
 <?= $this->section('js') ?>
     <script src="<?= base_url('js/profile/photo.js') ?>"></script>
+    <script src="<?= base_url('js/profile/password.js') ?>"></script>
 <?= $this->endSection() ?>
