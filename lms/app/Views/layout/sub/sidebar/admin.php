@@ -11,7 +11,8 @@
 </li>
 
 <li class="nav-item">
-    <a href="#" class="nav-link <?= $menu === 'profile' ? 'active' : '' ?>">
+    <a href="<?= route_to('profile') ?>" 
+        class="nav-link <?= $menu === 'profile' ? 'active' : '' ?>">
         <i class="nav-icon fas fa-user"></i>
         <p>
             Profile

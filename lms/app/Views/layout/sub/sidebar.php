@@ -9,10 +9,10 @@
 
         <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
             <div class="image">
-                <img src="<?= $user->photo ?>" class="img-circle" alt="User Image">
+                <img src="<?= $user->photo ?>" class="img-circle profile-photo" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">
+                <a href="<?= route_to('profile') ?>" class="d-block">
                     <?= $user->full_name ?>
                 </a>
                 <small class="text-secondary">

@@ -15,6 +15,13 @@ $routes->get('login', 'AuthController::login', ['as' => 'login', 'filter' => 'gu
 $routes->post('login', 'AuthController::processLogin', ['as' => 'login', 'filter' => 'guest']);
 $routes->delete('logout', 'AuthController::logout', ['as' => 'logout', 'filter' => 'auth']);
 
+// Profile Routes
+$routes->group('profile', ['filter' => ['auth']], function ($routes) {
+    $routes->get('/', 'ProfileController::index', ['as' => 'profile']);
+    $routes->post('change-photo', 'ProfileController::changePhoto', ['as' => 'profile.change_photo']);
+    $routes->post('remove-photo', 'ProfileController::removePhoto', ['as' => 'profile.remove_photo']);
+});
+
 // Admin Routes
 $routes->group('admin', ['filter' => ['auth', 'role_admin'], 'namespace' => Admin::class], function ($routes) {
     $routes->get('dash', 'DashController::index', ['as' => 'admin.dash']);
