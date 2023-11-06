@@ -62,10 +62,11 @@
 </li>
 
 <li class="nav-item">
-    <a href="#" class="nav-link <?= $menu === 'jadwal' ? 'active' : '' ?>">
+    <a href="<?= route_to('admin.jadwal') ?>" 
+        class="nav-link <?= $menu === 'jadwal' ? 'active' : '' ?>">
         <i class="nav-icon fas fa-calendar-alt"></i>
         <p>
-            Jadwal Kelas
+            Jadwal
         </p>
     </a>
 </li>

@@ -58,4 +58,14 @@ $routes->group('admin', ['filter' => ['auth', 'role_admin'], 'namespace' => Admi
         $routes->get('edit/(:any)', 'MapelController::edit/$1', ['as' => 'admin.mapel.edit']);
         $routes->post('update', 'MapelController::update', ['as' => 'admin.mapel.update']);
     });
+
+    // Admin > Jadwal Routes
+    $routes->group('jadwal', function ($routes) {
+        $routes->get('/', 'JadwalController::index', ['as' => 'admin.jadwal']);
+        $routes->get('create', 'JadwalController::create', ['as' => 'admin.jadwal.create']);
+        $routes->post('store', 'JadwalController::store', ['as' => 'admin.jadwal.store']);
+        $routes->post('destroy', 'JadwalController::destroy', ['as' => 'admin.jadwal.destroy']);
+        $routes->get('edit/(:any)', 'JadwalController::edit/$1', ['as' => 'admin.jadwal.edit']);
+        $routes->post('update', 'JadwalController::update', ['as' => 'admin.jadwal.update']);
+    });
 });
