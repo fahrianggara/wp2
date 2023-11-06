@@ -9,7 +9,7 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 
 class MapelController extends BaseController
 {    
-    protected $userModel, $db, $auth, $subjectModel;
+    protected $subjectModel;
 
     /**
      * constructor.
@@ -19,9 +19,6 @@ class MapelController extends BaseController
     public function __construct()
     {
         $this->subjectModel = new SubjectModel();
-        $this->db = \Config\Database::connect();
-        $this->userModel = new UserModel();
-        $this->auth = $this->userModel->authUser();
     }
 
     /**

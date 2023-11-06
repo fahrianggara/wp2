@@ -9,7 +9,7 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 
 class KelasController extends BaseController
 {    
-    protected $userModel, $db, $auth, $classroomModel;
+    protected $classroomModel;
 
     /**
      * constructor.
@@ -19,9 +19,6 @@ class KelasController extends BaseController
     public function __construct()
     {
         $this->classroomModel = new ClassroomModel();
-        $this->db = \Config\Database::connect();
-        $this->userModel = new UserModel();
-        $this->auth = $this->userModel->authUser();
     }
 
     /**

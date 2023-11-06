@@ -12,7 +12,7 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 
 class GuruController extends BaseController
 {    
-    protected $userModel, $db, $auth, $teacherModel;
+    protected $teacherModel;
 
     /**
      * constructor.
@@ -21,10 +21,7 @@ class GuruController extends BaseController
      */
     public function __construct()
     {
-        $this->userModel = new UserModel();
         $this->teacherModel = new TeacherModel();
-        $this->db = \Config\Database::connect();
-        $this->auth = $this->userModel->authUser();
     }
 
     /**

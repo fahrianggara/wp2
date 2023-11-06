@@ -10,20 +10,6 @@ use Config\Services;
 
 class SiswaController extends BaseController
 {    
-    protected $userModel, $db, $auth;
-
-    /**
-     * constructor.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->userModel = new UserModel();
-        $this->db = \Config\Database::connect();
-        $this->auth = $this->userModel->authUser();
-    }
-    
     /**
      * Display a listing of the resource.
      *
