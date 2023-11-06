@@ -3,7 +3,9 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\ClassroomModel;
 use App\Models\ScheduleModel;
+use App\Models\SubjectModel;
 use App\Models\TeacherModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
@@ -95,6 +97,76 @@ class JadwalController extends BaseController
             ]);
 
             return redirect()->route('admin.jadwal')->with('success', 'Data jadwal berhasil ditambahkan.');
+        } catch (\Throwable $th) {
+            $this->db->transRollback();
+            return redirect()->back()->withInput()->with('error', $th->getMessage());
+        } finally {
+            $this->db->transCommit();
+        }
+    }
+
+    /**
+     * Edit the specified resource from storage.
+     * 
+     * @param string $id
+     * @return void
+     */
+    public function edit(string $id) 
+    {
+        $id = base64_decode($id);
+        $schedule = $this->scheduleModel->where('id', $id)->first();
+
+        if (!$schedule) // jika jadwal tidak ditemukan
+            return redirect()->route('admin.jadwal')->with('error', 'Data jadwal tidak ditemukan.');
+        
+        return view('admin/jadwal/edit', [
+            'title' => 'Edit Jadwal Sekolah',
+            'menu' => 'jadwal',
+            'user' =>  $this->auth,
+            'teachers' => $this->teacherModel->with(['users'])->findAll(),
+            'jadwal' => $schedule,
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     * 
+     * @return void
+     */
+    public function update()
+    {
+        $request = $this->request;
+        $id = base64_decode($request->getVar('id'));
+
+        if (!$this->validate($this->rules())) {
+            return redirect()->back()->withInput();
+        }
+
+        $schedule = $this->scheduleModel->where('day', $request->getVar('day'))
+            ->where('start_time', $request->getVar('start_time'))
+            ->where('end_time', $request->getVar('end_time'))
+            ->where('teacher_id', $request->getVar('teacher_id'))
+            ->where('subject_id', $request->getVar('subject_id'))
+            ->where('classroom_id', $request->getVar('classroom_id'))
+            ->where('id !=', $id)
+            ->first();
+
+        if ($schedule) 
+            return redirect()->back()->withInput()->with('warning', "Jadwal tersebut sudah ada!");
+
+        $this->db->transBegin();
+        try {
+            $this->scheduleModel->save([
+                'id' => $id, // id jadwal
+                'day' => $request->getVar('day'),
+                'start_time' => $request->getVar('start_time'),
+                'end_time' => $request->getVar('end_time'),
+                'teacher_id' => $request->getVar('teacher_id'),
+                'subject_id' => $request->getVar('subject_id'),
+                'classroom_id' => $request->getVar('classroom_id'),
+            ]);
+
+            return redirect()->route('admin.jadwal')->with('success', 'Data jadwal berhasil diubah.');
         } catch (\Throwable $th) {
             $this->db->transRollback();
             return redirect()->back()->withInput()->with('error', $th->getMessage());
