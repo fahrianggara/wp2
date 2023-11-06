@@ -89,7 +89,7 @@
                         <div class="col-md-6 form-group">
                             <label for="start_time" wajib>Jam Mulai</label>
 
-                            <input type="time" name="start_time" id="start_time"
+                            <input type="time" name="start_time" id="start_time" value="<?= old('start_time') ?>"
                                 class="form-control <?= validation_show_error('start_time') ? 'is-invalid' : '' ?>">
                                 
                             <div class="invalid-feedback d-block">
@@ -100,7 +100,7 @@
                         <div class="col-md-6 form-group">
                             <label for="end_time" wajib>Jam Selesai</label>
 
-                            <input type="time" name="end_time" id="end_time"
+                            <input type="time" name="end_time" id="end_time" value="<?= old('end_time') ?>"
                                 class="form-control <?= validation_show_error('end_time') ? 'is-invalid' : '' ?>">
 
                             <div class="invalid-feedback d-block">
@@ -168,7 +168,6 @@
                 }
             });
         }).trigger('change');
-    
     });
 </script>
 
