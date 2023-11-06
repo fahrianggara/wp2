@@ -62,6 +62,7 @@ $routes->group('admin', ['filter' => ['auth', 'role_admin'], 'namespace' => Admi
     // Admin > Jadwal Routes
     $routes->group('jadwal', function ($routes) {
         $routes->get('/', 'JadwalController::index', ['as' => 'admin.jadwal']);
+        $routes->get('fetch', 'JadwalController::fetch', ['as' => 'admin.jadwal.fetch']);
         $routes->get('create', 'JadwalController::create', ['as' => 'admin.jadwal.create']);
         $routes->post('store', 'JadwalController::store', ['as' => 'admin.jadwal.store']);
         $routes->post('destroy', 'JadwalController::destroy', ['as' => 'admin.jadwal.destroy']);

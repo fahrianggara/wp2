@@ -4,9 +4,12 @@ namespace App\Models;
 
 use App\Entities\Teacher;
 use CodeIgniter\Model;
+use Tatter\Relations\Traits\ModelTrait;
 
 class TeacherModel extends Model
 {
+    use ModelTrait;
+
     protected $table            = 'teachers';
     protected $returnType       = Teacher::class;
     protected $useTimestamps    = true;
