@@ -83,4 +83,26 @@
 <?= $this->section('js') ?>
     <script src="<?= base_url('js/profile/photo.js') ?>"></script>
     <script src="<?= base_url('js/profile/password.js') ?>"></script>
+    <script>
+        var activeTab = localStorage.getItem('activeTab');
+        if (activeTab) {
+            $('a[href="' + activeTab + '"]').tab('show');
+        }
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+            var activeTab = $(e.target).attr('href');
+            localStorage.setItem('activeTab', activeTab);
+        });
+
+        /**
+         * Remove class is-invalid when click tab no active
+         *
+         * @return void
+         */
+        $('a[data-toggle="tab"]:not(.active)').on('click', function() {
+            $('form').trigger('reset');
+            $('.form-control').removeClass('is-invalid').removeClass('is-valid');
+            $('span.error-text').text('');
+            $('.limit-text').text($('.limit-text').data('limit'));
+        });
+    </script>
 <?= $this->endSection() ?>
