@@ -38,6 +38,31 @@ label[wajib]::after {
     margin-left: 3px;
 }
 
+.dropdown-toggle-split.btn-action {
+    border-radius: 8px !important;
+    background-color: #004085 !important;
+    color: #fff !important;
+    height: auto;
+    width: auto;
+    padding: 5px 12px;
+    height: 33px;
+    width: 33px;
+    font-size: 12px;
+}
+
+.profile-photo {
+	height: 40px !important;
+	width: 40px !important;
+	border-radius: 50%;
+    object-fit: cover;
+    background-position: center;
+}
+
+.profile-photo.lg {
+    width: 120px !important;
+    height: 120px !important;
+}
+
 /* ========================================================================
  * CARD BOOTSTRAP CUSTOM
  * ======================================================================== */
@@ -212,49 +237,103 @@ table th, table td {
  *  DROPDOWN CUSTOM BOOTSTRAP 4
  * ======================================================================= */
 
-.dropdown-item.active, .dropdown-item:active {
-    background-color: transparent;
-    color: #000;
-}
-
-.dropdown-toggle::after,
-.dropleft .dropdown-toggle::before {
-    display: none;
-}
-
-.dropdown-menu-lg {
-    min-width: 280px;
-}
-
-.dropdown-menu-md {
-    min-width: 240px;
+[data-toggle="dropdown"] {
+    border-radius: 8px !important;
 }
 
 .dropdown-menu {
-    border-radius: 14px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.11);
     overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.dropdown-header {
-    background: var(--header-color);
-    position: relative;
-    bottom: 8px;
-    font-weight: 500;
-    text-align: left;
-}
-
-.dropdown-toggle figure {
-    margin: 0;
+    border: 1px solid var(--border-color) !important;
 }
 
 .dropdown-item {
-    padding: 0rem 1rem;
+    font-size: 15px;
+    color: var(--text-secondary-color);
+}
+
+.dropdown-item:first-child {
+    border-radius: 10px 10px 0 0;
+}
+
+.dropdown-item:last-child {
+    border-radius: 0 0 10px 10px;
+}
+
+.dropdown-header {
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 15px !important;
+}
+
+.dropdown-footer {
+    border-top: 1px solid var(--border-color);
+}
+
+.dropdown-footer,
+.dropdown-header {
+    text-align: left;
     font-size: 14px;
     font-weight: 500;
-    color: var(--text-secondary-color);
-    transition: all 0.1s ease-in-out;
+    background-color: #f1f1f1;
 }
+
+.dropdown-footer:hover,
+.dropdown-header:hover {
+    background-color: #f1f1f1;
+    color: var(--text-secondary-color);
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #f1f1f1;
+    color: var(--text-secondary-color) !important;
+}
+
+.dropdown-item i {
+    color: #007bff;
+}
+
+.dropdown-toggle::after,
+.dropleft .dropdown-toggle::before,
+.dropright .dropdown-toggle::after,
+.dropup .dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-toggle-split {
+    padding: 5px 10px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown-toggle-split:hover,
+.dropdown-toggle-split[aria-expanded="true"] {
+    border-color: #007bff;
+}
+
+.dropdown-toggle-split[aria-expanded="true"] {
+    background-color: #007bff;
+}
+
+.dropdown-toggle-split[aria-expanded="true"] i {
+    color: #fff;
+}
+
+.dropdown-divider {
+    border-color: var(--border-color) !important;
+}
+
+.dropdown-item.disabled,
+.dropdown-item:disabled {
+    cursor: no-drop !important;
+    pointer-events: visible !important;
+}
+
 
 /* ====================================================================================================
 # Modal Bootstrap

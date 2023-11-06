@@ -21,6 +21,47 @@ if (toastAlert.length) {
     });
 }
 
+/**
+     * Validate file type
+     *
+     * @param {string} file_type
+     */
+function validateFileType(file_type) {
+    var valid_files = ['image/jpeg', 'image/png', 'image/jpg'];
+    return valid_files.includes(file_type);
+}
+
+/**
+ * Validate file size
+ *
+ * @param {File} file
+ */
+function validateFileSize(file) {
+    var max_size = 1 * 1024 * 1024; // 1 MB
+    return file.size <= max_size;
+}
+
+/**
+ * Alert Swal
+ * 
+ * @param {string} icon
+ * @param {string} title
+ * @param {string} text
+ */
+function alertSwal(icon, title, text, allowOutsideClick = false) {
+    let swalOptions = {
+        icon: icon,
+        title: title,
+        html: text
+    };
+
+    if (allowOutsideClick) {
+        swalOptions.allowOutsideClick = allowOutsideClick;
+    }
+
+    Swal.fire(swalOptions);
+}
+
 $(document).ready(function () 
 {
     $(document).on("click", "#btn-logout", function (e) {
