@@ -76,6 +76,10 @@ class UserModel extends Model
      */
     public function authUser()
     {
-        return $this->where('id', session()->get('id'))->first();
+        if (session()->has('logged_in')) {
+            return $this->where('id', session()->get('id'))->first();
+        } else {
+            return redirect()->route('login');
+        }
     }
 }
