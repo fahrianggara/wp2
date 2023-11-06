@@ -29,7 +29,41 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                <?php $no = 1 ?>
+                                <?php foreach($schedules as $jadwal): ?>
+                                    <?php 
+                                        $user = $userModel->where('id', $jadwal->teacher->user_id)->first();
+                                    ?>
+                                    <tr>
+                                        <td><?= $no++ ?></td>
+                                        <td>
+                                            <div class="d-flex flex-column">
+                                                <span><?= ucfirst($jadwal->day) ?></span>
+                                                <small class="text-secondary"><?= time_format($jadwal->start_time) ?> - <?= time_format($jadwal->end_time) ?></small>
+                                            </div>
+                                        </td>
+                                        <td><?= user_info($user) ?></td>
+                                        <td><?= $jadwal->classroom ? upcase($jadwal->classroom->name) : "<span class='badge badge-danger'>Kosong</span>" ?></td>
+                                        <td><?= $jadwal->subject ? upcase($jadwal->subject->name) : "<span class='badge badge-danger'>Kosong</span>" ?></td>
+                                        <td>
+                                            <div class="btn-group dropleft">
+                                                <button class="btn btn-sm btn-more dropdown-toggle"
+                                                    data-toggle="dropdown" aria-expanded="false" data-display="static">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="<?= base_url("admin/jadwal/edit/" . base64_encode($jadwal->id)) ?>" class="dropdown-item py-1">
+                                                        <i class="fas text-warning fa-pen mr-2"></i> Edit
+                                                    </a>
+                                                    <button type="button" value="<?= base64_encode($jadwal->id) ?>" class="dropdown-item py-1 btn-delete"
+                                                        data-action="<?= route_to('admin.jadwal.destroy') ?>">
+                                                        <i class="fas text-danger fa-trash mr-2"></i> Hapus
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
                             </tbody>
                         </table>
                     </div>
@@ -52,12 +86,11 @@
         e.preventDefault();
 
         const id = $(this).val();
-        const name = $(this).data("name");
         const action = $(this).data("action");
 
         Swal.fire({
-            title: 'Apakah anda yakin?',
-            html: `Akan menghapus data jadwal <b>${name}</b>`,
+            title: 'Apakah anda yakin',
+            html: `Akan menghapus data jadwal tersebut?!`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',

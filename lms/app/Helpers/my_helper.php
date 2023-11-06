@@ -1,5 +1,6 @@
-<?php 
+<?php
 
+use Carbon\Carbon;
 use Config\Services;
 
 /**
@@ -123,4 +124,15 @@ function user_info($user)
             </div>
         </div>
     ";
+}
+
+/**
+ * Time format H:i Carbon
+ *
+ * @param string $time
+ * @return string
+ */
+function time_format($time, $wib = true) {
+    $wib = $wib == true ? ' WIB' : '';
+    return Carbon::parse($time)->translatedFormat('H:i') . $wib;
 }

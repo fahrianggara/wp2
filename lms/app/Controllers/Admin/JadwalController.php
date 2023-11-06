@@ -29,13 +29,14 @@ class JadwalController extends BaseController
      */
     public function index()
     {
-        $schedules = $this->scheduleModel->findAll();
+        $schedules = $this->scheduleModel->with(['teachers', 'classrooms', 'subjects'])->findAll();
         
         return view('admin/jadwal/index', [
             'title'     => 'Data Jadwal Sekolah',
             'menu'      => 'jadwal',
             'user'      => $this->auth,
             'schedules' => $schedules,
+            'userModel' => $this->userModel,
             'db'        => $this->db
         ]);
     }
@@ -97,6 +98,37 @@ class JadwalController extends BaseController
         } catch (\Throwable $th) {
             $this->db->transRollback();
             return redirect()->back()->withInput()->with('error', $th->getMessage());
+        } finally {
+            $this->db->transCommit();
+        }
+    }
+
+    /**
+     * Destroy the specified resource from storage.
+     * 
+     * @return void
+     */
+    public function destroy()
+    {
+        if (!$this->request->isAJAX()) //  jika akses lewat url
+            throw PageNotFoundException::forPageNotFound(); 
+
+        $this->db->transBegin();
+        try {
+            $id = base64_decode($this->request->getVar('id'));
+
+            $this->scheduleModel->delete($id); 
+
+            return $this->response->setJSON([
+                'status' => 200,
+                'message' => 'Data jadwal berhasil dihapus.'
+            ]);
+        } catch (\Throwable $th) {
+            $this->db->transRollback();
+            return $this->response->setJSON([
+                'status' => 400,
+                'message' => $th->getMessage()
+            ]);
         } finally {
             $this->db->transCommit();
         }
