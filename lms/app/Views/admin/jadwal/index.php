@@ -32,7 +32,7 @@
                                 <?php $no = 1 ?>
                                 <?php foreach($schedules as $jadwal): ?>
                                     <?php 
-                                        $user = $userModel->where('id', $jadwal->teacher->user_id)->first();
+                                        $user = $userModel->where('id', $jadwal->teacher->user_id ?? null)->first();
                                     ?>
                                     <tr>
                                         <td><?= $no++ ?></td>

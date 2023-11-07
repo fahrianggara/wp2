@@ -117,6 +117,8 @@ function destroy_file($filename, $path)
  */
 function user_info($user) 
 {
+    if (!$user) return "<span class='badge badge-danger'>Tidak ada</span>";
+    
     return "
         <div class='user-info'>
             <img src='$user->photo'>
