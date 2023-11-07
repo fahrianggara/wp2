@@ -38,7 +38,8 @@
                                         <td><?= $jadwal->classroom ? upcase($jadwal->classroom->name) : "<span class='badge badge-danger'>Kosong</span>" ?></td>
                                         <td><?= $jadwal->subject ? upcase($jadwal->subject->name) : "<span class='badge badge-danger'>Kosong</span>" ?></td>
                                         <td>
-                                            <a href="#" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Materi">
+                                            <a href="<?= route_to('guru.materi', base64_encode($jadwal->id)) ?>" class="btn btn-primary btn-sm" 
+                                                data-toggle="tooltip" title="Materi">
                                                 <i class="fas fa-book"></i>
                                             </a>
                                         </td>

@@ -83,8 +83,10 @@ $routes->group('admin', ['filter' => ['auth', 'role_admin'], 'namespace' => Admi
 // Guru Routes
 $routes->group('guru', ['filter' => ['auth', 'role_guru'], 'namespace' => Guru::class], function ($routes) {
     $routes->get('dash', 'DashController::index', ['as' => 'guru.dash']);
+    $routes->get('jadwal', 'JadwalController::index', ['as' => 'guru.jadwal']);
 
-    $routes->group('jadwal', function ($routes) {
-        $routes->get('/', 'JadwalController::index', ['as' => 'guru.jadwal']);
+    $routes->group('materi', function ($routes) {
+        $routes->get('(:any)', 'MateriController::index/$1', ['as' => 'guru.materi']);
     });
+    
 });
