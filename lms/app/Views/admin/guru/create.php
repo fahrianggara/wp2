@@ -96,7 +96,7 @@
                                 <option <?= selected_option(old('religion'), 'budha') ?> value="budha">Budha</option>
                                 <option <?= selected_option(old('religion'), 'hindu') ?> value="hindu">Hindu</option>
                                 <option <?= selected_option(old('religion'), 'protestan') ?> value="protestan">Protestan</option>
-                                <option <?= selected_option(old('religion'), 'konghucu') ?> value="konghucu">Konghucu</option>
+                                <option <?= selected_option(old('religion'), 'khonghucu') ?> value="khonghucu">Khonghucu</option>
                             </select>
 
                             <div class="invalid-feedback d-block">

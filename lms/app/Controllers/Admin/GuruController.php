@@ -91,8 +91,10 @@ class GuruController extends BaseController
                 'code'          => $request->getVar('code'),
             ]);
 
-            $this->teacherModel->syncClassrooms($this->db->insertID(), $request->getVar('classroom_ids'));
-            $this->teacherModel->syncSubjects($this->db->insertID(), $request->getVar('subject_ids'));
+            $insertId = $this->db->insertID();
+
+            $this->teacherModel->syncSubjects($insertId, $request->getVar('subject_ids'));
+            $this->teacherModel->syncClassrooms($insertId, $request->getVar('classroom_ids'));
 
             return redirect()->route('admin.guru')->with('success', 'Data guru berhasil ditambahkan.');
         } catch (\Throwable $th) {

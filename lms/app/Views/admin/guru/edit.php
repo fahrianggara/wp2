@@ -102,7 +102,7 @@
                                 <option <?= selected_option($guru->religion, 'budha') ?> value="budha">Budha</option>
                                 <option <?= selected_option($guru->religion, 'hindu') ?> value="hindu">Hindu</option>
                                 <option <?= selected_option($guru->religion, 'protestan') ?> value="protestan">Protestan</option>
-                                <option <?= selected_option($guru->religion, 'konghucu') ?> value="konghucu">Konghucu</option>
+                                <option <?= selected_option($guru->religion, 'khonghucu') ?> value="khonghucu">Khonghucu</option>
                             </select>
 
                             <div class="invalid-feedback d-block">
