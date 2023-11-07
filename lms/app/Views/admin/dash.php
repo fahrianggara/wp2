@@ -80,7 +80,7 @@
         <div class="col-xl-6 col-lg-5 col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Cara Penggunaan Di-Lemas
+                    Cara Penggunaan Di-Lemas pada Peran Admin
                 </div>
                 <div class="card-body">
                     <ol class="m-1 px-3">
@@ -88,7 +88,8 @@
                         <li class="mb-1">Habis itu buat <a target="_blank" href="<?= route_to('admin.mapel.create') ?>">data mata pelajaran</a>, yaa 1 data atau 2 data juga boleh.</li>
                         <li class="mb-1">Jika sudah.. buat <a target="_blank" href="<?= route_to('admin.guru.create') ?>">data guru</a>, minimal 1 data.</li>
                         <li class="mb-1">Dan <a target="_blank" href="<?= route_to('admin.siswa.create') ?>">data siswa</a>, minimal 2 atau 3 data.</li>
-                        <li>Terakhir buat <a target="_blank" href="<?= route_to('admin.jadwal.create') ?>">data jadwal</a>, minimal 1 data.</li>
+                        <li class="mb-1">Yang terakhir buat <a target="_blank" href="<?= route_to('admin.jadwal.create') ?>">data jadwal</a>, minimal 1 data.</li>
+                        <li class="mb-1">Sekarang kamu bisa login sebagai siswa atau guru yang kamu buat sebelumnya.</li>
                     </ol>
                 </div>
             </div>
