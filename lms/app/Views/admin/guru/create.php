@@ -78,10 +78,8 @@
                         <div class="form-group col-lg-6">
                             <label for="gender">Jenis Kelamin</label>
                             <select class="custom-select" name="gender" id="gender">
-                                <option value="laki_laki" >
-                                    Laki-laki
-                                </option>
-                                <option value="perempuan">Perempuan</option>
+                                <option <?= selected_option(old('gender'), 'laki_laki') ?> value="laki_laki">Laki-laki</option>
+                                <option <?= selected_option(old('gender'), 'perempuan') ?> value="perempuan">Perempuan</option>
                             </select>
                         </div>
 
