@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\TeacherModel;
+use App\Models\UserModel;
 use Carbon\Carbon;
 use Config\Services;
 
@@ -135,4 +137,18 @@ function user_info($user)
 function time_format($time, $wib = true) {
     $wib = $wib == true ? ' WIB' : '';
     return Carbon::parse($time)->translatedFormat('H:i') . $wib;
+}
+
+/**
+ * Helper teacher()
+ */
+function teacher()
+{
+    $session = session();
+
+    if ($session->role !== 'teacher') 
+        return null;
+
+    $teacherModel = new TeacherModel();
+    return $teacherModel->where('user_id', $session->id)->with(['users'])->first();
 }

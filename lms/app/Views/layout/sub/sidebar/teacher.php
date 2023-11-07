@@ -23,7 +23,7 @@
 <li class="nav-header">Menu</li>
 
 <li class="nav-item">
-    <a href="<?= route_to('dash.jadwal') ?>" 
+    <a href="<?= route_to('guru.jadwal') ?>" 
         class="nav-link <?= $menu === 'jadwal' ? 'active' : '' ?>">
         <i class="nav-icon fas fa-calendar-alt"></i>
         <p>
