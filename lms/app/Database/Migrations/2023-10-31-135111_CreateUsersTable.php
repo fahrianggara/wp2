@@ -12,7 +12,7 @@ class CreateUsersTable extends Migration
             'id' => ['type' => 'INT', 'constraint' => 11, 'auto_increment' => true],
             'first_name' => ['type' => "VARCHAR", 'constraint' => 255],
             'last_name' => ['type' => "VARCHAR", 'constraint' => 255],
-            'id_number' => ['type' => 'INT', 'constraint' => 11, 'unique' => true],
+            'id_number' => ['type' => 'BIGINT', 'constraint' => 11, 'unique' => true],
             'email' => ['type' => 'VARCHAR', 'constraint' => 255, 'unique' => true],
             'gender' => ['type' => "ENUM('laki_laki','perempuan')", "default" => "laki_laki"],
             'religion' => ['type' => "ENUM('islam','kristen','katolik','budha','hindu','protestan','khonghucu')", "default" => NULL],
