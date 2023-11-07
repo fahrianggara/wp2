@@ -56,6 +56,38 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-7">
+                    <div class="row align-items-center mb-3">
+                        <div class="col-lg-4 col-4">
+                            <b>Kelas Mengajar</b>
+                        </div>
+                        <div class="col-lg-8 col-8">
+                            <?php if ($user->teacher_classrooms): ?>
+                                <?php foreach($user->teacher_classrooms as $classroom): ?>
+                                    <span class="badge badge-primary"><?= upcase($classroom->name) ?></span>
+                                <?php endforeach ?>
+                            <?php else: ?>
+                                <span class="badge badge-danger">Tidak ada</span>
+                            <?php endif ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="row align-items-center mb-3">
+                        <div class="col-lg-4 col-4">
+                            <b>Mapel Diampu</b>
+                        </div>
+                        <div class="col-lg-8 col-8">
+                            <?php if ($user->teacher_subjects): ?>
+                                <?php foreach($user->teacher_subjects as $subject): ?>
+                                    <span class="badge badge-primary"><?= upcase($subject->code) ?></span>
+                                <?php endforeach ?>
+                            <?php else: ?>
+                                <span class="badge badge-danger">Tidak ada</span>
+                            <?php endif ?>
+                        </div>
+                    </div>
+                </div>
             <?php elseif ($user->role === 'student'): ?>
                 <div class="col-lg-7">
                     <div class="row align-items-center mb-3">

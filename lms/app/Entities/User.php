@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use CodeIgniter\Entity\Entity;
+use Config\Database;
 
 class User extends Entity
 {
@@ -30,5 +31,51 @@ class User extends Entity
     {
         $path = 'images/pictures/' . $this->attributes['picture'];
         return file_exists($path) ? base_url($path) : base_url('images/picture.png');
+    }
+
+    /**
+     * Get teacher classrooms
+     * 
+     * @return void
+     */
+    public function getTeacherClassrooms()
+    {
+        $session = session();
+        $db = Database::connect();
+
+        if ($session->role !== 'teacher') 
+            return null;
+        
+        // Join table teachers, classrooms, and classroom_teacher
+        return $db->table('teachers')
+            ->distinct()
+            ->join('teacher_classrooms', 'teacher_classrooms.teacher_id = teachers.id')
+            ->join('classrooms', 'classrooms.id = teacher_classrooms.classroom_id')
+            ->where('teachers.user_id', $session->id)
+            ->select('classrooms.name')
+            ->get()->getResult();
+    }
+
+    /**
+     * Get teacher subjects
+     * 
+     * @return void
+     */
+    public function getTeacherSubjects()
+    {
+        $session = session();
+        $db = Database::connect();
+
+        if ($session->role !== 'teacher') 
+            return null;
+        
+        // Join table teachers, subjects, and subject_teacher
+        return $db->table('teachers')
+            ->distinct()
+            ->join('teacher_subjects', 'teacher_subjects.teacher_id = teachers.id')
+            ->join('subjects', 'subjects.id = teacher_subjects.subject_id')
+            ->where('teachers.user_id', $session->id)
+            ->select('subjects.code')
+            ->get()->getResult();
     }
 }
