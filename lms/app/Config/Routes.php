@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\Admin;
+use App\Controllers\Guru;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -77,4 +78,9 @@ $routes->group('admin', ['filter' => ['auth', 'role_admin'], 'namespace' => Admi
         $routes->get('edit/(:any)', 'JadwalController::edit/$1', ['as' => 'admin.jadwal.edit']);
         $routes->post('update', 'JadwalController::update', ['as' => 'admin.jadwal.update']);
     });
+});
+
+// Guru Routes
+$routes->group('guru', ['filter' => ['auth', 'role_guru'], 'namespace' => Guru::class], function ($routes) {
+    $routes->get('dash', 'DashController::index', ['as' => 'guru.dash']);
 });

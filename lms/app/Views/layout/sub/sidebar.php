@@ -33,6 +33,16 @@
                     <?= $this->include('layout/sub/sidebar/student') ?>
                 <?php endif; ?>
 
+                <li class="nav-header">Aksi</li>
+                <li class="nav-item">
+                    <a href="<?= route_to('logout') ?>" class="nav-link bg-danger" id="btn-logout">
+                        <i class="nav-icon fas fa-sign-out-alt "></i>
+                        <p>
+                            Logout
+                        </p>
+                    </a>
+                </li>
+
             </ul>
         </nav>
 
