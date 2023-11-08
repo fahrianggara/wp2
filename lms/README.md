@@ -1,67 +1,69 @@
-# CodeIgniter 4 Application Starter
+# Tugas Individu Project ke-7 (Aplikasi Di-Lemas)
 
-## What is CodeIgniter?
+Metode digital learning memberikan kemudahan dan kelancaran proses belajar-mengajar bagi siswa
+dan guru. Dengan metode digital learning, guru dapat meningkatkan intensitas komunikasi interaktif
+dengan siswa di luar jam kelas resmi.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Prasyarat
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+- PHP 7.4 atau versi lebih baru.
+- [Composer](https://getcomposer.org/), alat manajemen dependensi PHP.
+- Local Server seperti [XAMPP](https://www.apachefriends.org/index.html) atau [Laragon](https://laragon.org/).
+- Ekstensi PHP: `intl`, `json`, dan `mbstring`.
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## Instalasi
 
-The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+1. Clone repositori ini atau download repositori ini dalam bentuk ZIP (Di-ekstrak setelah didownload).
+2. Buka terminal dan arahkan ke direktori repositori ini.
+3. Jalankan perintah `composer install` atau `composer update` untuk mengunduh dependensi.
+4. Membuat database baru dengan nama `db_dilemas`.
+5. Salin berkas `.env.example` menjadi `.env`.
+6. Konfigurasi berkas `.env` sebagai berikut:
+```
+CI_ENVIRONMENT = development
 
-## Installation & updates
+app.baseURL = 'http://localhost:8080'
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+database.default.hostname = localhost
+database.default.database = db_dilemas
+database.default.username = root
+database.default.password = 
+database.default.DBDriver = MySQLi
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+# Note: jangan lupa di hapus taggar (#)
+```
+7. Migrasikan table ke database dengan perintah `php spark migrate` atau `php spark migrate:refresh` lalu `php spark db:seed Run`.
+8. Jalankan perintah `php spark serve` untuk menjalankan aplikasi. Dan jangan lupa untuk mengaktifkan MySQL pada Local Server.
 
-## Setup
+Aplikasi dapat diakses pada alamat `http://localhost:8080`.
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+## Fitur
 
-## Important Change with index.php
+### Admin
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+- [X] Login
+- [x] Logout
+- [x] Edit Profile (Foto Profile, Password)
+- [x] CRUD Data Guru
+- [x] CRUD Data Siswa
+- [x] CRUD Data Kelas
+- [x] CRUD Data Mata Pelajaran
+- [x] CRUD Data Jadwal
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+### Guru
 
-**Please** read the user guide for a better explanation of how CI4 works!
+- [x] Login
+- [x] Logout
+- [x] Edit Profile (Foto Profile, Password)
+- [x] CRUD Data Materi
 
-## Repository Management
+### Siswa
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+- [x] Login
+- [x] Logout
+- [x] Edit Profile (Foto Profile, Password)
+- [x] Read Data Materi
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+## Kontributor
 
-## Server Requirements
-
-PHP version 7.4 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> **Warning**
-> The end of life date for PHP 7.4 was November 28, 2022. If you are
-> still using PHP 7.4, you should upgrade immediately. The end of life date
-> for PHP 8.0 will be November 26, 2023.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+- [10220009 - Fahri Anggara](https://fahrianggara.my.id/)
