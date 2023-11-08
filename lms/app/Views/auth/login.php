@@ -72,7 +72,7 @@
                                             class="dropdown-item d-flex align-items-center default-login">
                                             <img src="<?= $user->photo ?>" alt="avatar <?= $user->full_name ?>"
                                                 class="rounded-circle mr-2" width="20" height="20">
-                                            <?= $user->full_name ?> <small class="text-muted ml-1">(<?= ucfirst($user->role) ?>)</small>
+                                            <?= $user->full_name ?> <small class="text-muted ml-1">(<?= ucfirst($user->roleId) ?>)</small>
                                         </button>
                                     <?php endforeach ?>
                                 </div>

@@ -100,4 +100,28 @@ class User extends Entity
             ->select('classrooms.name')
             ->get()->getRow();
     }
+
+    /**
+     * get Translate role
+     * 
+     */
+    public function getRoleId()
+    {
+        $role = $this->attributes['role'];
+
+        switch ($role) {
+            case 'admin':
+                return 'admin';
+                break;
+            case 'teacher':
+                return 'guru';
+                break;
+            case 'student':
+                return 'siswa';
+                break;
+            default:
+                return 'Tidak Diketahui';
+                break;
+        }
+    }
 }
