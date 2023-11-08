@@ -20,6 +20,13 @@
 
                 <div class="card-body">
 
+                    <div class="alert alert-default-warning alert-dissmissible fade show">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Perhatian!</strong> <br>
+                        <small>Form dengan tanda <span class="text-danger">*</span> wajib diisi.</small><br>
+                        <small>Password akan dibuat otomatis sesuai dengan nomer induk.</small>
+                    </div>
+
                     <div class="row">
 
                         <div class="form-group col-lg-6">
