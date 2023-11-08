@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\StudentModel;
 use App\Models\TeacherModel;
 use App\Models\UserModel;
 use Carbon\Carbon;
@@ -191,4 +192,18 @@ function teacher()
 
     $teacherModel = new TeacherModel();
     return $teacherModel->where('user_id', $session->id)->with(['users'])->first();
+}
+
+/**
+ * Helper student()
+ */
+function student()
+{
+    $session = session();
+
+    if ($session->role !== 'student') 
+        return null;
+
+    $studentModel = new StudentModel();
+    return $studentModel->where('user_id', $session->id)->with(['users'])->first();
 }
