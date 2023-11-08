@@ -38,7 +38,7 @@ class MateriController extends BaseController
             return redirect()->route('guru.jadwal')->with('error', 'Jadwal tidak ditemukan.');
         
         return view('guru/materi/index', [
-            'title'     => "Materi - Kelas: " . upcase($schedule->classroom->name) . " | Mapel: {$schedule->subject->name}",
+            'title'     => "Materi - Kelas: " . upcase($schedule->classroom->name) . " ({$schedule->subject->name})",
             'menu'      => 'jadwal',
             'user'      => $this->auth,
             'jadwal'    => $schedule,
@@ -63,7 +63,7 @@ class MateriController extends BaseController
             return redirect()->route('guru.jadwal')->with('error', 'Jadwal tidak ditemukan.');
 
         return view('guru/materi/create', [
-            'title'     => "Tambah Materi - Kelas: " . upcase($schedule->classroom->name) . " | Mapel: {$schedule->subject->name}",
+            'title'     => "Tambah Materi - Kelas: " . upcase($schedule->classroom->name) . " ({$schedule->subject->name})",
             'menu'      => 'jadwal',
             'user'      => $this->auth,
             'jadwal'    => $schedule,
@@ -130,7 +130,7 @@ class MateriController extends BaseController
             return redirect()->route('guru.jadwal')->with('error', 'Materi tidak ditemukan.');
 
         return view('guru/materi/edit', [
-            'title'     => "Edit Materi - Kelas: " . upcase($schedule->classroom->name) . " | Mapel: {$schedule->subject->name}",
+            'title'     => "Edit Materi - Kelas: " . upcase($schedule->classroom->name) . " ({$schedule->subject->name})",
             'menu'      => 'jadwal',
             'user'      => $this->auth,
             'jadwal'    => $schedule,
