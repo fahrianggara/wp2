@@ -165,7 +165,18 @@ function user_info($user)
  */
 function time_format($time, $wib = true) {
     $wib = $wib == true ? ' WIB' : '';
-    return Carbon::parse($time)->translatedFormat('H:i') . $wib;
+    return Carbon::parse($time)->locale('id')->translatedFormat('H:i') . $wib;
+}
+
+/**
+ * Time formal l, d F Y H:i Carbon
+ *
+ * @param string $time
+ * @return string
+ */
+function time_full($time, $format = 'l, d F Y - H:i', $wib = true) {
+    $wib = $wib == true ? ' WIB' : '';
+    return Carbon::parse($time)->locale('id')->translatedFormat($format) . $wib;
 }
 
 /**

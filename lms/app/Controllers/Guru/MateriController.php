@@ -42,6 +42,7 @@ class MateriController extends BaseController
             'menu'      => 'jadwal',
             'user'      => $this->auth,
             'jadwal'    => $schedule,
+            'lessons'   => $this->lessonModel->where('subject_id', $schedule->subject->id)->findAll(),
             'db'        => $this->db
         ]);
     }

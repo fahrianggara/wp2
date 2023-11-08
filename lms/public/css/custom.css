@@ -254,6 +254,9 @@ table th, table td {
     white-space: nowrap;
 }
 
+table.not-wrap th, table.not-wrap td {
+    white-space: normal;
+}
 
 /* =======================================================================
  *  DROPDOWN CUSTOM BOOTSTRAP 4
