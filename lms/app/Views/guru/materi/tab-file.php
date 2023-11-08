@@ -16,6 +16,10 @@
                         <?php $no = 1 ?>
                         <?php foreach($lessons as $materi): ?>
                             <?php if ($materi->type === 'file'): ?>
+                                <?php 
+                                    $materi_id = base64_encode($materi->id);
+                                    $jadwal_id = base64_encode($jadwal->id);    
+                                ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
                                     <td><?= $materi->name ?></td>
@@ -33,7 +37,7 @@
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="<?= route_to('guru.materi.edit', base64_encode($materi->id)) ?>"
+                                                <a href="<?= base_url("guru/materi/edit/$materi_id/$jadwal_id") ?>"
                                                     class="dropdown-item py-1">
                                                     <i class="fas text-warning fa-pen mr-2"></i> Edit
                                                 </a>

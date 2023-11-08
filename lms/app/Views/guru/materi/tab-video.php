@@ -1,8 +1,12 @@
-<div class="tab-pane fade show" id="tab_video">
+<div class="tab-pane fade show" id="tab_youtube">
     <div class="row">
         <?php if ($lessons): ?>
             <?php foreach ($lessons as $materi): ?>
                 <?php if ($materi->type === 'youtube'): ?>
+                    <?php 
+                        $materi_id = base64_encode($materi->id);
+                        $jadwal_id = base64_encode($jadwal->id);    
+                    ?>
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-header p-2">
@@ -14,7 +18,7 @@
                                             <i class="fas fa-ellipsis-h"></i>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="<?= route_to('guru.materi.edit', base64_encode($materi->id)) ?>"
+                                            <a href="<?= base_url("guru/materi/edit/$materi_id/$jadwal_id") ?>"
                                                 class="dropdown-item py-1">
                                                 <i class="fas text-warning fa-pen mr-2"></i> Edit
                                             </a>

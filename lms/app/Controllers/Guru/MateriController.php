@@ -77,8 +77,9 @@ class MateriController extends BaseController
     public function store()
     {
         $request = $this->request;
+        $type_materi = $request->getVar('type');
 
-        if (!$this->validate($this->rules($request->getVar('type')))) {
+        if (!$this->validate($this->rules($type_materi))) {
             return redirect()->back()->withInput();
         }
 
@@ -87,20 +88,99 @@ class MateriController extends BaseController
             $schedule = $this->scheduleModel->where("id", base64_decode($request->getVar('jadwal_id')))
                 ->with(['classrooms', 'subjects'])->first();
 
-            ($request->getVar('type') === 'file')
+            ($type_materi === 'file')
                 ? $attachment = upload_file($request, 'file/materi')
                 : $attachment = $request->getVar('youtube');
 
             $this->lessonModel->save([
                 'name' => $request->getVar('name'),
                 'description' => $request->getVar('description'),
-                'type' => $request->getVar('type'),
+                'type' => $type_materi,
                 'attachment' => $attachment,
                 'subject_id' => $schedule->subject->id,
             ]);
 
             return redirect()->route('guru.materi', [base64_encode($schedule->id)])
-                ->with('success', 'Data materi berhasil ditambahkan.');
+                ->with('success', 'Data materi berhasil ditambahkan.')
+                ->with('tabLesson', "#tab_$type_materi");
+        } catch (\Throwable $th) {
+            $this->db->transRollback();
+
+            return redirect()->back()->withInput()->with('error', $th->getMessage());
+        } finally {
+            $this->db->transCommit();
+        }
+    }
+
+    /**
+     * Display edit form.
+     * 
+     * @param string $materi_id
+     * @param string $jadwal_id
+     * @return void
+     */
+    public function edit($materi_id, $jadwal_id)
+    {
+        $materi = $this->lessonModel->where('id', base64_decode($materi_id))->first();
+        $schedule = $this->scheduleModel->where('id', base64_decode($jadwal_id))
+            ->with(['classrooms', 'subjects'])->first();
+
+        if (!$materi) 
+            return redirect()->route('guru.jadwal')->with('error', 'Materi tidak ditemukan.');
+
+        return view('guru/materi/edit', [
+            'title'     => "Edit Materi - Kelas: " . upcase($schedule->classroom->name) . " | Mapel: {$schedule->subject->name}",
+            'menu'      => 'jadwal',
+            'user'      => $this->auth,
+            'jadwal'    => $schedule,
+            'materi'    => $materi,
+        ]);
+    }
+
+    /**
+     * Update specified resource.
+     * 
+     * @return void
+     */
+    public function update()
+    {
+        $request = $this->request;
+        $type_materi = $request->getVar('type');
+        $materi = $this->lessonModel->where('id', base64_decode($request->getVar('materi_id')))->first();
+        $schedule = $this->scheduleModel->where('id', base64_decode($request->getVar('jadwal_id')))
+            ->with(['classrooms', 'subjects'])->first();
+
+        if (!$this->validate($this->rules($type_materi))) {
+            return redirect()->back()->withInput();
+        }
+
+        $this->db->transBegin();
+        try {
+            $path = 'file/materi';
+            $old_file = $materi->attachment;
+
+            if ($type_materi === 'file') {
+                if ($request->getFile('file') !== 4) {
+                    $attachment = upload_file($request, $path, $old_file, true);
+                } else {
+                    $attachment = $old_file;
+                }
+            } else {
+                destroy_file($old_file, $path);
+                $attachment = $request->getVar('youtube');
+            }
+
+            $this->lessonModel->save([
+                'id' => $materi->id,
+                'name' => $request->getVar('name'),
+                'description' => $request->getVar('description'),
+                'type' => $type_materi,
+                'attachment' => $attachment,
+            ]);
+
+            return redirect()->route('guru.materi', [base64_encode($schedule->id)])
+                ->with('success', 'Data materi berhasil diubah.')
+                ->with('tabLesson', "#tab_$type_materi");
         } catch (\Throwable $th) {
             $this->db->transRollback();
 

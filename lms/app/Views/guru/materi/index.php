@@ -12,7 +12,7 @@
                             <i class="fas fa-arrow-left mr-1"></i>
                             Kembali
                         </a>
-                        <a href="<?= route_to('guru.materi.create', base64_encode($jadwal->id)) ?>" 
+                        <a href="<?= route_to('guru.materi.create', base64_encode($jadwal->id)) ?>"
                             class="btn btn-sm btn-success">
                             <i class="fas fa-plus mr-1"></i>
                             Materi
@@ -31,7 +31,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#tab_video" data-toggle="tab">
+                            <a class="nav-link" href="#tab_youtube" data-toggle="tab">
                                 Video Pembelajaran
                             </a>
                         </li>
@@ -52,12 +52,24 @@
 
 <script>
     $(document).ready(function () {
+        const sessionTabLesson = "<?= session()->getFlashdata('tabLesson') ?>";
+        var activeTabLesson = localStorage.getItem('activeTabLesson');
+
+        if (sessionTabLesson) {
+            $('a[href="' + sessionTabLesson + '"]').tab('show');
+            localStorage.setItem('activeTabLesson', sessionTabLesson);
+        } else if (activeTabLesson) {
+            $('a[href="' + activeTabLesson + '"]').tab('show');
+        }
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            var activeTabLesson = $(e.target).attr('href');
+            localStorage.setItem('activeTabLesson', activeTabLesson);
+        });
+
         // each btn-delete then set click event
         const btnDelete = document.querySelectorAll("#btn-delete");
-
-        for (let i = 0; i < btnDelete.length; i++)
-        {
-            btnDelete[i].addEventListener('click', function (e) {  
+        for (let i = 0; i < btnDelete.length; i++) {
+            btnDelete[i].addEventListener('click', function (e) {
                 e.preventDefault();
 
                 const id = $(this).val();
@@ -77,8 +89,10 @@
                         $.ajax({
                             url: action,
                             type: "POST",
-                            data: {id},
-                            success: function(res) {
+                            data: {
+                                id
+                            },
+                            success: function (res) {
                                 if (res.status === 200) {
                                     Swal.fire({
                                         title: 'Berhasil!',
