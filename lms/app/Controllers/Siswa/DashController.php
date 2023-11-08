@@ -13,10 +13,17 @@ class DashController extends BaseController
      */
     public function index()
     {
+        $countJadwal = $this->db->table('students')
+            ->join('classrooms', 'classrooms.id = students.classroom_id')
+            ->join('schedules', 'schedules.classroom_id = classrooms.id')
+            ->where('students.user_id', $this->auth->id)
+            ->countAllResults();
+
         return view('siswa/dash', [
             'title' => 'Dashboard',
             'menu' => 'dashboard',
             'user'  => $this->auth,
+            'countJadwal' => $countJadwal,
         ]);
     }
 }

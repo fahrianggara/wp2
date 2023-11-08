@@ -9,8 +9,7 @@
                 <div class="col-lg-6 col-md-4 col-6">
                     <a href="<?= route_to('siswa.jadwal') ?>" class="small-box">
                         <div class="inner">
-                            <h3>1</h3>
-
+                            <h3><?= $countJadwal ?></h3>
                             <p>Jadwal Sekolah</p>
                         </div>
                         <div class="icon">
@@ -34,7 +33,7 @@
                     <h6><b>Melihat Materi</b></h6>
                     <ol class="m-1 px-3">
                         <li class="mb-1">Silahkan klik menu jadwal di sidebar. Atau klik <a href="<?= route_to('siswa.jadwal') ?>">disini</a>.</li>
-                        <li class="mb-1">Lalu klik tombol buku (materi) di table jadwal yang kamu pilih.</li>
+                        <li class="mb-1">Lalu klik tombol materi kelas di table jadwal yang kamu pilih.</li>
                         <li class="mb-1">Halaman materi akan muncul, dan kamu bisa ganti tab materi antara Tab File dan Video (YouTube)</li>
                     </ol>
                 </div>
