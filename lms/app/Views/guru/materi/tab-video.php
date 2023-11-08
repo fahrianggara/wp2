@@ -1,7 +1,7 @@
 <div class="tab-pane fade show" id="tab_youtube">
     <div class="row">
-        <?php if ($lessons): ?>
-            <?php foreach ($lessons as $materi): ?>
+        <?php if ($lessonYs): ?>
+            <?php foreach ($lessonYs as $materi): ?>
                 <?php if ($materi->type === 'youtube'): ?>
                     <?php 
                         $materi_id = base64_encode($materi->id);

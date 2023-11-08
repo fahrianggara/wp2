@@ -63,7 +63,8 @@
                                 <label for="youtube" wajib>Kode YouTube</label>
 
                                 <input type="text" id="youtube" name="youtube" placeholder="www.youtube.com/watch?v= (?)"
-                                    class="form-control <?= validation_show_error('youtube') ? 'is-invalid' : '' ?>">
+                                    class="form-control <?= validation_show_error('youtube') ? 'is-invalid' : '' ?>"
+                                    value="<?= old('youtube') ?>">
 
                                 <div class="invalid-feedback d-block">
                                     <?= validation_show_error('youtube') ?>
@@ -75,7 +76,7 @@
                     <div class="form-group">
                         <label for="description" wajib>Deskripsi</label>
 
-                        <textarea name="description" id="description" rows="3" 
+                        <textarea name="description" id="description" rows="4" 
                             class="form-control <?= validation_show_error('description') ? 'is-invalid' : '' ?>" 
                             placeholder="Masukkan Deskripsi Materi"><?= old('description') ?></textarea>
 
@@ -115,7 +116,7 @@
             const filterType = form.find(".form-group.file, .form-group.youtube");
 
             filterType.addClass('d-none');
-            formGroup.removeClass('d-none').find('input').val('');
+            formGroup.removeClass('d-none');
             form_group.find(".form-control, .custom-file-input").removeClass("is-invalid");
             form_group.find(".error-text").text("");
         }).trigger('change');

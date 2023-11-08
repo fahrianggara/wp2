@@ -18,7 +18,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Hari</th>
+                                    <th>Hari & Jam Pelajaran</th>
                                     <th>Kelas</th>
                                     <th>Mata Pelajaran</th>
                                     <th>&nbsp;</th>
@@ -36,11 +36,20 @@
                                             </div>
                                         </td>
                                         <td><?= $jadwal->classroom ? upcase($jadwal->classroom->name) : "<span class='badge badge-danger'>Kosong</span>" ?></td>
-                                        <td><?= $jadwal->subject ? upcase($jadwal->subject->name) : "<span class='badge badge-danger'>Kosong</span>" ?></td>
                                         <td>
-                                            <a href="<?= route_to('guru.materi', base64_encode($jadwal->id)) ?>" class="btn btn-primary btn-sm" 
-                                                data-toggle="tooltip" title="Materi">
-                                                <i class="fas fa-book"></i>
+                                            <div class="d-flex flex-column">
+                                                <span><?= upcase($jadwal->subject->name) ?></span>
+                                                <small class="text-secondary"><?= upcase($jadwal->subject->code) ?></small>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="<?= route_to('guru.materi', base64_encode($jadwal->id)) ?>" 
+                                                class="btn btn-primary btn-sm">
+                                                <i class="fas fa-book mr-1"></i> 
+                                                Materi Kelas 
+                                                <span class="badge badge-pill badge-light ml-1">
+                                                    <?= $jadwal->lessons->countAllResults() ?>
+                                                </span>
                                             </a>
                                         </td>
                                     </tr>
@@ -61,6 +70,23 @@
 
 <script>
     const table = $("#table-jadwal").DataTable({
+        columns: [
+            {
+                createdCell: function (td) {
+                    $(td).css("width", "9%");
+                }
+            },
+            null,
+            null,
+            null,
+            {
+                orderable: false,
+                searchable: false,
+                createdCell: function (td) {
+                    $(td).css("width", "16%");
+                }
+            }
+        ],
         fnDrawCallback: function () {
             $('[data-toggle="tooltip"]').tooltip({
                 trigger: 'hover'

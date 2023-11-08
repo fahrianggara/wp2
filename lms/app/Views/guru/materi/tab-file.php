@@ -14,7 +14,7 @@
                     </thead>
                     <tbody>
                         <?php $no = 1 ?>
-                        <?php foreach($lessons as $materi): ?>
+                        <?php foreach($lessonFs as $materi): ?>
                             <?php if ($materi->type === 'file'): ?>
                                 <?php 
                                     $materi_id = base64_encode($materi->id);
