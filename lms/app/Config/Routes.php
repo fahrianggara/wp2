@@ -96,3 +96,14 @@ $routes->group('guru', ['filter' => ['auth', 'role_guru'], 'namespace' => Guru::
     });
     
 });
+
+// Siswa Routes
+$routes->group('siswa', ['filter' => ['auth', 'role_siswa'], 'namespace' => Siswa::class], function ($routes) {
+    $routes->get('dash', 'DashController::index', ['as' => 'siswa.dash']);
+    $routes->get('jadwal', 'JadwalController::index', ['as' => 'siswa.jadwal']);
+
+    // Siswa > Materi Routes
+    $routes->group('materi', function ($routes) {
+        $routes->get('(:any)', 'MateriController::index/$1', ['as' => 'siswa.materi']);
+    });
+});

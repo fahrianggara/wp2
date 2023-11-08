@@ -6,6 +6,7 @@ use App\Filters\Auth;
 use App\Filters\Guest;
 use App\Filters\RoleAdmin;
 use App\Filters\RoleGuru;
+use App\Filters\RoleSiswa;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -33,6 +34,7 @@ class Filters extends BaseConfig
         'guest'         => Guest::class,
         'role_admin'    => RoleAdmin::class,
         'role_guru'     => RoleGuru::class,
+        'role_siswa'    => RoleSiswa::class,
     ];
 
     /**
