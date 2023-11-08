@@ -188,7 +188,6 @@ label[wajib]::after {
     font-size: 15px;
     border-radius: 8px;
     border: 1px solid var(--border-color);
-    transition: all 0.3s ease-in-out;
 }
 
 .form-control::-webkit-input-placeholder,

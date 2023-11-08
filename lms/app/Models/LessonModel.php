@@ -11,6 +11,6 @@ class LessonModel extends Model
     protected $returnType       = Lesson::class;
     protected $useTimestamps    = true;
     protected $allowedFields    = [
-        'name', 'description', 'type', 'attachment', 'classroom_id'
+        'name', 'description', 'type', 'attachment', 'subject_id'
     ];
 }

@@ -22,16 +22,16 @@
             </div>
         </div>
         <div class="col-lg-12">
-            <div class="card mb-2">
+            <div class="card">
                 <div class="card-header p-2">
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link " href="#tab_file" data-toggle="tab">
+                            <a class="nav-link active" href="#tab_file" data-toggle="tab">
                                 Materi Tambahan
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="#tab_video" data-toggle="tab">
+                            <a class="nav-link" href="#tab_video" data-toggle="tab">
                                 Video Pembelajaran
                             </a>
                         </li>

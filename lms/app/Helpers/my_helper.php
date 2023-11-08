@@ -97,6 +97,33 @@ function upload_picture($request, $path, $old_picture = null, $upload = false)
 }
 
 /**
+ * Upload file
+ * 
+ * @param  mixed $request
+ * @param  mixed $path
+ * @param  mixed $old_file
+ * @param  mixed $upload
+ * @return string
+ */
+function upload_file($request, $path, $old_file = null, $upload = false)
+{
+    $file = $request->getFile('file');
+    $fileName = $old_file ?? 'file.pdf';
+
+    if ($file->getError() !== 4) 
+    {
+        $fileName = $file->getRandomName();
+        $file->move($path, $fileName);
+
+        if ($old_file && $upload) {
+            destroy_file($old_file, $path);
+        }
+    }
+
+    return $fileName;
+}
+
+/**
  * Destroy file from storage.
  * 
  * @param  mixed $filename
