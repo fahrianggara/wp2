@@ -40,13 +40,12 @@ label[wajib]::after {
 
 .dropdown-toggle-split.btn-action {
     border-radius: 8px !important;
-    background-color: #004085 !important;
     color: #fff !important;
     height: auto;
     width: auto;
-    padding: 5px 12px;
-    height: 33px;
-    width: 33px;
+    padding: 0.4rem 0.8rem !important;
+    height: 35px;
+    width: 35px;
     font-size: 12px;
 }
 
@@ -359,6 +358,9 @@ table.not-wrap th, table.not-wrap td {
     pointer-events: visible !important;
 }
 
+.dropdown-menu-md {
+    min-width: 240px;
+}
 
 /* ====================================================================================================
 # Modal Bootstrap

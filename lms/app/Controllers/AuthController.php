@@ -10,6 +10,7 @@ use Config\Services;
 
 class AuthController extends BaseController
 {    
+
     /**
      * Display login page.
      *
@@ -17,8 +18,11 @@ class AuthController extends BaseController
      */
     public function login()
     {   
+        $userModel = new UserModel();
+        
         return view('auth/login', [
-            'title' => 'Login'
+            'title' => 'Login',
+            'users' => $userModel->findAll(3)
         ]);
     }
     

@@ -56,11 +56,49 @@
                         </div>
 
                         <div class="card-footer p-2">
-                            <button type="submit" class="btn btn-primary">Masuk</button>
+                            <button type="submit" class="btn btn-sm btn-primary">Masuk</button>
+                            <div class="btn-group dropup">
+                                <button class="btn btn-info dropdown-toggle dropdown-toggle-split btn-action"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,3">
+                                    <i class="fas fa-users"></i>
+                                </button>
+
+                                <div class="dropdown-menu dropdown-menu-md dropdown-menu-start py-1">
+                                    <h6 class="dropdown-header" style="position: relative; bottom: 4px;">
+                                        Akun Default
+                                    </h6>
+                                    <?php foreach ($users as $user): ?>
+                                        <button value="<?= $user->id_number ?>" type="button"
+                                            class="dropdown-item d-flex align-items-center default-login">
+                                            <img src="<?= $user->photo ?>" alt="avatar <?= $user->full_name ?>"
+                                                class="rounded-circle mr-2" width="20" height="20">
+                                            <?= $user->full_name ?> <small class="text-muted ml-1">(<?= ucfirst($user->role) ?>)</small>
+                                        </button>
+                                    <?php endforeach ?>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </section>
+
+<?= $this->endSection() ?>
+
+<?= $this->section('js') ?>
+
+<script>
+    $(document).ready(function () {
+        $(document).on('click', '.default-login', function () {
+            let id_number = $(this).val();
+            
+            $('#id_number').val(id_number);
+            $('#password').val(id_number);
+
+            $("button[type='submit']").trigger("click");
+        });
+    });
+</script>
+
 <?= $this->endSection() ?>
