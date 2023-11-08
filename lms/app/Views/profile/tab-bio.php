@@ -99,6 +99,20 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-7">
+                    <div class="row align-items-center mb-3">
+                        <div class="col-lg-4 col-4">
+                            <b>Kelas</b>
+                        </div>
+                        <div class="col-lg-8 col-8">
+                            <?php if ($user->student_classroom): ?>
+                                <span class="badge badge-primary"><?= upcase($user->student_classroom->name) ?></span>
+                            <?php else: ?>
+                                <span class="badge badge-danger">Tidak ada</span>
+                            <?php endif ?>
+                        </div>
+                    </div>
+                </div>
             <?php endif ?>
         </div>
     </div>

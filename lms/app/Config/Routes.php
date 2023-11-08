@@ -2,6 +2,7 @@
 
 use App\Controllers\Admin;
 use App\Controllers\Guru;
+use App\Controllers\Siswa;
 use CodeIgniter\Router\RouteCollection;
 
 /**

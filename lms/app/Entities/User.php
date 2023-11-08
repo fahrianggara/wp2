@@ -78,4 +78,26 @@ class User extends Entity
             ->select('subjects.code')
             ->get()->getResult();
     }
+
+    /**
+     * Get student classroom
+     * 
+     * @return void
+     */
+    public function getStudentClassroom()
+    {
+        $session = session();
+        $db = Database::connect();
+
+        if ($session->role !== 'student') 
+            return null;
+        
+        // Join table students, classrooms, and classroom_student
+        return $db->table('students')
+            ->distinct()
+            ->join('classrooms', 'classrooms.id = students.classroom_id')
+            ->where('students.user_id', $session->id)
+            ->select('classrooms.name')
+            ->get()->getRow();
+    }
 }
