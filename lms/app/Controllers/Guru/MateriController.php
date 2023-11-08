@@ -111,6 +111,40 @@ class MateriController extends BaseController
     }
 
     /**
+     * Destroy the specified resource.
+     * 
+     * @return void
+     */
+    public function destroy()
+    {
+        $this->db->transBegin();
+        try {
+            $request = $this->request;
+
+            $materi = $this->lessonModel->where('id', base64_decode($request->getVar('id')))->first();
+
+            if ($materi->type === 'file') 
+                destroy_file($materi->attachment, 'file/materi');
+            
+            $this->lessonModel->delete($materi->id);
+
+            return $this->response->setJSON([
+                'status' => 200,
+                'message' => 'Data materi berhasil dihapus.'
+            ]);
+        } catch (\Throwable $th) {
+            $this->db->transRollback();
+
+            return $this->response->setJSON([
+                'status' => 400,
+                'message' => $th->getMessage()
+            ]);
+        } finally {
+            $this->db->transCommit();
+        }
+    }
+
+    /**
      * Rules validation
      * 
      * @return array

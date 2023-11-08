@@ -47,3 +47,63 @@
 </div>
 
 <?= $this->endSection() ?>
+
+<?= $this->section('js') ?>
+
+<script>
+    $(document).ready(function () {
+        // each btn-delete then set click event
+        const btnDelete = document.querySelectorAll("#btn-delete");
+
+        for (let i = 0; i < btnDelete.length; i++)
+        {
+            btnDelete[i].addEventListener('click', function (e) {  
+                e.preventDefault();
+
+                const id = $(this).val();
+                const action = $(this).data("action");
+
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    html: `Akan menghapus data materi tersebut?!`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: action,
+                            type: "POST",
+                            data: {id},
+                            success: function(res) {
+                                if (res.status === 200) {
+                                    Swal.fire({
+                                        title: 'Berhasil!',
+                                        text: res.message,
+                                        icon: 'success',
+                                        allowOutsideClick: false,
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            location.reload();
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        text: res.message,
+                                        icon: 'error',
+                                        confirmButtonText: 'Tutup',
+                                    });
+                                }
+                            },
+                        });
+                    }
+                });
+            });
+        }
+    });
+</script>
+
+<?= $this->endSection() ?>

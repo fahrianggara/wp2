@@ -86,6 +86,7 @@ $routes->group('guru', ['filter' => ['auth', 'role_guru'], 'namespace' => Guru::
     $routes->get('jadwal', 'JadwalController::index', ['as' => 'guru.jadwal']);
 
     $routes->group('materi', function ($routes) {
+        $routes->post('destroy', 'MateriController::destroy', ['as' => 'guru.materi.destroy']);
         $routes->post('store', 'MateriController::store', ['as' => 'guru.materi.store']);
         $routes->get('create/(:any)', 'MateriController::create/$1', ['as' => 'guru.materi.create']);
         $routes->get('(:any)', 'MateriController::index/$1', ['as' => 'guru.materi']);

@@ -7,7 +7,7 @@
                         <div class="card">
                             <div class="card-header p-2">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <span class="ml-2"><?= $materi->name ?></span>
+                                    <span class="ml-2 text-truncate"><?= $materi->name ?></span>
                                     <div class="btn-group dropleft">
                                         <button class="btn btn-sm btn-more dropdown-toggle" data-toggle="dropdown"
                                             aria-expanded="false" data-display="static">
@@ -19,8 +19,8 @@
                                                 <i class="fas text-warning fa-pen mr-2"></i> Edit
                                             </a>
                                             <button type="button" value="<?= base64_encode($materi->id) ?>"
-                                                class="dropdown-item py-1 btn-delete"
-                                                data-action="<?= route_to('admin.guru.destroy') ?>">
+                                                class="dropdown-item py-1" id="btn-delete"
+                                                data-action="<?= route_to('guru.materi.destroy') ?>">
                                                 <i class="fas text-danger fa-trash mr-2"></i> Hapus
                                             </button>
                                         </div>
@@ -34,7 +34,6 @@
                             <div class="card-footer p-3">
                                 <small class="text-muted position-relative" style="bottom: 7px;">
                                     <i class="fas fa-clock mr-1"></i>
-                                    <!-- Senin, 12 Oktober 2020 - 01:00 WIB -->
                                     <?= time_full($materi->created_at) ?>
                                 </small>
                                 <p class="m-0">
@@ -47,7 +46,7 @@
             <?php endforeach ?>
         <?php else: ?>
             <div class="col-md-12">
-                <div class="alert alert-info">
+                <div class="alert alert-default-warning">
                     <i class="fas fa-info-circle mr-1"></i>
                     Belum ada materi video.
                 </div>

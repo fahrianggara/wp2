@@ -38,8 +38,8 @@
                                                     <i class="fas text-warning fa-pen mr-2"></i> Edit
                                                 </a>
                                                 <button type="button" value="<?= base64_encode($materi->id) ?>"
-                                                    class="dropdown-item py-1 btn-delete"
-                                                    data-action="<?= route_to('admin.guru.destroy') ?>">
+                                                    class="dropdown-item py-1" id="btn-delete"
+                                                    data-action="<?= route_to('guru.materi.destroy') ?>">
                                                     <i class="fas text-danger fa-trash mr-2"></i> Hapus
                                                 </button>
                                             </div>
