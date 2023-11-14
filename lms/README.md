@@ -76,7 +76,7 @@ database.default.DBDriver = MySQLi
 
 ## Entity Relationship Table (ERD)
 
-<p><a href="https://bsi.ac.id" target="_blank"><img src="https://github.com/fahrianggara/wp2/blob/main/lms/public/images/erd.png?raw=true"></a></p>
+<p><a href="https://github.com/fahrianggara/wp2/blob/main/lms/public/images/erd.png?raw=true" target="_blank"><img src="https://github.com/fahrianggara/wp2/blob/main/lms/public/images/erd.png?raw=true"></a></p>
 
 ## Kontributor
 
