@@ -13,14 +13,25 @@ class ClassroomSeeder extends Seeder
 
         $classroomModel->insertBatch([
             [
-                'name' => '10.1a.01',
+                'name' => '17.3a.25',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-            ], [
-                'name' => '10.3a.01',
+            ],
+            [
+                'name' => '12.5z.18',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
-            ]
+            ],
+            [
+                'name' => '43.7x.94',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => '05.9u.32',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
         ]);
     }
 }

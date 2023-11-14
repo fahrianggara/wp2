@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
     {
         $data = [
             [
-                'first_name' => 'GOD',
+                'first_name' => 'Mimin',
                 'last_name' => 'Admin',
                 'id_number' => 11111111,
                 'email' => "11111111@mail.com",

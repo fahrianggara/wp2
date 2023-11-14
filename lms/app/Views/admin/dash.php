@@ -89,9 +89,12 @@
                         <li class="mb-1">Jika sudah.. buat <a target="_blank" href="<?= route_to('admin.guru.create') ?>">data guru</a>, minimal 1 data.</li>
                         <li class="mb-1">Dan <a target="_blank" href="<?= route_to('admin.siswa.create') ?>">data siswa</a>, minimal 2 atau 3 data.</li>
                         <li class="mb-1">Yang terakhir buat <a target="_blank" href="<?= route_to('admin.jadwal.create') ?>">data jadwal</a>, minimal 1 data.</li>
-                        <li class="mb-1">Sekarang kamu bisa login sebagai siswa atau guru yang kamu buat sebelumnya.</li>
+                        <li class="mb-3">Sekarang kamu bisa login sebagai siswa atau guru yang kamu buat sebelumnya.</li>
                     </ol>
-                </div>
+                    Note: <br>
+                    Jangan lupa ketika buat data jadwal, data kelas siswa dan kelas guru harus direlasikan (sama). Misal di siswa A kelasnya adalah B,
+                    maka di guru A kelasnya juga harus B, gabisa C. Karena nanti jika beda kelas, siswa tidak akan bisa melihat materi yang dibuat oleh guru.
+                </div> 
             </div>
         </div>
     </div>

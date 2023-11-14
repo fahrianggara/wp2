@@ -23,6 +23,18 @@ class SubjectSeeder extends Seeder
             [
                 'name' => 'XII - Matematika',
                 'code' => 'xii-mtk'
+            ],
+            [
+                'name' => 'X - Fisika',
+                'code' => 'x-fsk'
+            ],
+            [
+                'name' => 'XI - Bahasa Indonesia',
+                'code' => 'xi-bindo'
+            ],
+            [
+                'name' => 'XII - Penjaskes',
+                'code' => 'xii-penjas'
             ]
         ]);
     }

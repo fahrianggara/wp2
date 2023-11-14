@@ -9,6 +9,7 @@
                             <th>Judul</th>
                             <th>Deskripsi</th>
                             <th>Lampiran</th>
+                            <th>Dibuat</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,6 +24,7 @@
                                     <td><?= $no++ ?></td>
                                     <td><?= $materi->name ?></td>
                                     <td><?= $materi->description ?></td>
+                                    <td><?= time_full($materi->created_at) ?></td>
                                     <td>
                                         <a href="<?= base_url("file/materi/$materi->attachment") ?>" target="_blank"
                                             class="btn btn-primary btn-sm" data-toggle="tooltip" title="Buka Materi">
@@ -56,13 +58,17 @@
             },
             {
                 createdCell: function (td) {
-                    $(td).css("width", "60%");
+                    $(td).css("width", "53%");
                 }
             },
             {
-                className: "text-center",
                 createdCell: function (td) {
-                    $(td).css("width", "12%");
+                    $(td).css("width", "15%");
+                }
+            },
+            {
+                createdCell: function (td) {
+                    $(td).css("width", "13%");
                 }
             },
         ],

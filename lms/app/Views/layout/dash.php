@@ -13,30 +13,30 @@
     <link rel="stylesheet" href="<?= base_url('css/custom.css') ?>">
 </head>
 
-<body class="sidebar-mini layout-fixed layout-footer-fixed">
-
-    <?= $this->include('layout/sub/flashdata') ?>
-
-    <?= $this->include('layout/sub/navbar') ?>
-
-    <?= $this->include('layout/sub/sidebar') ?>
+<body class="sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 
     <div class="wrapper">
-        <div class="content-wrapper">
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row align-items-center">
-                        <div class="col-sm-6">
-                            <h5 class="m-0"><?= $title ?></h5>
+        <?= $this->include('layout/sub/flashdata') ?>
+
+        <?= $this->include('layout/sub/navbar') ?>
+
+        <?= $this->include('layout/sub/sidebar') ?>
+
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col-sm-6">
+                                <h5 class="m-0"><?= $title ?></h5>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section class="content mt-2">
-                <?= $this->renderSection('content') ?>
-            </section>
-        </div>
+                <section class="content mt-2">
+                    <?= $this->renderSection('content') ?>
+                </section>
+            </div>
 
         <?= $this->include('layout/sub/footer') ?>
     </div>

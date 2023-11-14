@@ -248,10 +248,10 @@ class MateriController extends BaseController
         } else {
             $rule_merge = [
                 'youtube' => [
-                    'rules' => 'required|max_length[20]|string',
+                    'rules' => 'required|max_length[11]|string',
                     'errors' => [
                         'required' => 'Kode YouTube harus diisi.',
-                        'max_length' => 'Kode YouTube maksimal 20 karakter.',
+                        'max_length' => 'Kode YouTube maksimal 11 karakter.',
                         'string' => 'Kode YouTube harus berupa string.'
                     ]
                 ]

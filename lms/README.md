@@ -1,15 +1,14 @@
 # Tugas Individu Project ke-7 (Aplikasi Di-Lemas)
 
-Metode digital learning memberikan kemudahan dan kelancaran proses belajar-mengajar bagi siswa
-dan guru. Dengan metode digital learning, guru dapat meningkatkan intensitas komunikasi interaktif
-dengan siswa di luar jam kelas resmi.
+Aplikasi Di-LeMas ini menggunakan CodeIgniter 4.4.1 dan PHP 8.1.
 
 ## Prasyarat
 
 - PHP 7.4 atau versi lebih baru.
-- [Composer](https://getcomposer.org/), alat manajemen dependensi PHP.
+- [Composer](https://getcomposer.org/).
+- [GIT](https://git-scm.com/).
 - Local Server seperti [XAMPP](https://www.apachefriends.org/index.html) atau [Laragon](https://laragon.org/).
-- Ekstensi PHP: `intl`, `json`, dan `mbstring`.
+- Ekstensi PHP: `intl`, dan `mbstring`.
 
 ## Instalasi
 
@@ -32,7 +31,7 @@ database.default.DBDriver = MySQLi
 
 # Note: jangan lupa di hapus taggar (#)
 ```
-7. Migrasikan table ke database dengan perintah `php spark migrate` atau `php spark migrate:refresh` lalu `php spark db:seed Run`.
+7. Migrasikan table ke database dengan perintah `php spark migrate` atau `php spark migrate:refresh` Jika sudah lalu ketikkan `php spark db:seed Run`.
 8. Jalankan perintah `php spark serve` untuk menjalankan aplikasi. Dan jangan lupa untuk mengaktifkan MySQL pada Local Server.
 
 Aplikasi dapat diakses pada alamat `http://localhost:8080`.

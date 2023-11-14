@@ -50,17 +50,19 @@ class TeacherSeeder extends Seeder
         $subjectIds = [];
         $classroomIds = [];
 
-        // Ambil dua mata pelajaran secara acak
-        $randomSubjects = array_rand($subjects, 2);
+        // Ambil 3 mata pelajaran secara acak
+        $randomSubjects = array_rand($subjects, 4);
         foreach ($randomSubjects as $subjectIndex) {
             $subject = $subjects[$subjectIndex];
             $subjectIds[] = $subject->id;
         }
 
-        // Ambil satu ruang kelas secara acak
-        $randomClassroom = array_rand($classrooms, 1);
-        $classroom = $classrooms[$randomClassroom];
-        $classroomIds[] = $classroom->id;
+        // Ambil 2 ruang kelas secara acak
+        $randomClassrooms = array_rand($classrooms, 2);
+        foreach ($randomClassrooms as $classroomIndex) {
+            $classroom = $classrooms[$classroomIndex];
+            $classroomIds[] = $classroom->id;
+        }
 
         $this->teacherModel->syncSubjects($teacher, $subjectIds);
         $this->teacherModel->syncClassrooms($teacher, $classroomIds);

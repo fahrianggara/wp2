@@ -9,6 +9,7 @@
                             <th>Judul</th>
                             <th>Deskripsi</th>
                             <th>Lampiran</th>
+                            <th>Dibuat</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
@@ -30,6 +31,7 @@
                                             <i class="fas fa-external-link-alt"></i>
                                         </a>
                                     </td>
+                                    <td><?= time_full($materi->created_at) ?></td>
                                     <td>
                                         <div class="btn-group dropleft">
                                             <button class="btn btn-sm btn-more dropdown-toggle"
@@ -76,13 +78,18 @@
             },
             {
                 createdCell: function (td) {
-                    $(td).css("width", "60%");
+                    $(td).css("width", "50%");
                 }
             },
             {
                 className: "text-center",
                 createdCell: function (td) {
                     $(td).css("width", "12%");
+                }
+            },
+            {
+                createdCell: function (td) {
+                    $(td).css("width", "15%");
                 }
             },
             {

@@ -33,11 +33,12 @@
                     <ol class="m-1 px-3">
                         <li class="mb-1">Silahkan klik menu jadwal di sidebar. Atau klik <a href="<?= route_to('guru.jadwal') ?>">disini</a>.</li>
                         <li class="mb-1">Lalu klik tombol materi kelas di table jadwal yang kamu pilih.</li>
-                        <li class="mb-1">Selanjutnya, klik tombol + materi.</li>
+                        <li class="mb-1">Selanjutnya, klik tombol [+ materi].</li>
                         <li class="mb-1">Isi form yang tersedia, lalu klik tombol simpan.</li>
-                        <li class="mb-1">Materi yang kamu buat akan muncul di table materi.</li>
-                        Note: <i>Materi bisa berupa file (pdf, docx, dsb) atau video (YouTube).</i>
+                        <li class="mb-3">Materi yang kamu buat akan muncul di halaman materi.</li>
                     </ol>
+                    Note: <br>
+                        Materi bisa berupa file (pdf, docx, dsb) atau video (YouTube).
                 </div>
             </div>
         </div>

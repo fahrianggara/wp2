@@ -34,7 +34,10 @@
                     <ol class="m-1 px-3">
                         <li class="mb-1">Silahkan klik menu jadwal di sidebar. Atau klik <a href="<?= route_to('siswa.jadwal') ?>">disini</a>.</li>
                         <li class="mb-1">Lalu klik tombol materi kelas di table jadwal yang kamu pilih.</li>
-                        <li class="mb-1">Halaman materi akan muncul, dan kamu bisa ganti tab materi antara Tab File dan Video (YouTube)</li>
+                        <li class="mb-1">
+                            Halaman materi akan muncul, dan kamu bisa 
+                            ganti tab materi antara Tab File dan Video (YouTube). Misal materi belum ada berarti guru belum membuat materinya.
+                        </li>
                     </ol>
                 </div>
             </div>

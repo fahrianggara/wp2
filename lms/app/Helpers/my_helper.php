@@ -84,14 +84,10 @@ function upload_picture($request, $path, $old_picture = null, $upload = false)
     {
         $pictureName = $picture->getRandomName();
 
-        Services::image()
-            ->withFile($picture)
-            ->resize(400, 400, true, 'height')
-            ->save("$path/$pictureName");
-
-        if ($old_picture && $upload) {
+        if ($old_picture && $upload) 
             destroy_file($old_picture, $path);
-        }
+        
+        $picture->move($path, $pictureName);
     }
 
     return $pictureName;
@@ -116,9 +112,8 @@ function upload_file($request, $path, $old_file = null, $upload = false)
         $fileName = $file->getRandomName();
         $file->move($path, $fileName);
 
-        if ($old_file && $upload) {
+        if ($old_file && $upload) 
             destroy_file($old_file, $path);
-        }
     }
 
     return $fileName;
