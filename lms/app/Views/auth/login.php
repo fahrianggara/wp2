@@ -18,17 +18,19 @@
 
                         <div class="card-body">
 
-                            <?php if (session()->getFlashdata('error')): ?>
-                                <div class="alert alert-default-danger alert-dismissible fade show" 
-                                    role="alert">
-                                    <strong>Perhatian!</strong> <br>
-                                    <small><?= session()->getFlashdata('error') ?></small>
-                                    <button type="button" class="close" data-dismiss="alert" 
-                                        aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            <?php endif; ?>
+                            <div class="alert alert-default-warning alert-dismissible fade show" 
+                                role="alert" style="display: grid !important;">
+                                <strong class="mb-1">Perhatian!</strong>
+                                <small>
+                                    Untuk bisa login. Nomer Induk dan Password harus sama, 
+                                    misal Nomer Induk 111 maka Password juga 111.<br>
+                                    <b>Atau</b> bisa pilih/klik salah satu akun default di samping kanan tombol Masuk.
+                                </small>
+                                <button type="button" class="close" data-dismiss="alert" 
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                             
                             <div class="form-group">
                                 <label for="id_number" wajib>Nomer Induk</label>
@@ -65,14 +67,18 @@
 
                                 <div class="dropdown-menu dropdown-menu-md dropdown-menu-start py-1">
                                     <h6 class="dropdown-header" style="position: relative; bottom: 4px;">
-                                        Akun Default
+                                        Pilih/Klik Akun Default
                                     </h6>
                                     <?php foreach ($users as $user): ?>
                                         <button value="<?= $user->id_number ?>" type="button"
                                             class="dropdown-item d-flex align-items-center default-login">
                                             <img src="<?= $user->photo ?>" alt="avatar <?= $user->full_name ?>"
                                                 class="rounded-circle mr-2" width="20" height="20">
-                                            <?= $user->full_name ?> <small class="text-muted ml-1">(<?= ucfirst($user->roleId) ?>)</small>
+                                            <span class="mr-1"><?= $user->id_number ?> - </span>
+                                            <span><?= $user->full_name ?> </span>
+                                            <small class="text-muted ml-1">
+                                                (<?= ucfirst($user->roleId) ?>)
+                                            </small>
                                         </button>
                                     <?php endforeach ?>
                                 </div>
