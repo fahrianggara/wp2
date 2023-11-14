@@ -2,17 +2,17 @@
 
 ## A. Requirement
 
-Aplikasi Di-LeMas ini menggunakan CodeIgniter 4.4.1 dan PHP 8.1.
+Aplikasi Di-LeMas ini menggunakan [CodeIgniter](https://www.codeigniter.com/download) 4.4.3 dan PHP 8.1.
 
 ### a. Prasyarat
-1. PHP 7.4 atau versi diatasnya.
-2. Composer.
-3. GIT.
-4. Local Server (XAMPP atau Laragon).
+1. [PHP](https://www.php.net/downloads.php) 7.4 atau versi diatasnya.
+2. [Composer](https://getcomposer.org/).
+3. [GIT](https://git-scm.com/).
+4. Local Server ([XAMPP](https://www.apachefriends.org/download.html) atau [Laragon](https://laragon.org/download/index.html)).
 5. Extenstion PHP: intl, mbstring.
 
 ### b. Instalasi
-1. Clone repository dengan cara buka folder htdocs atau www (jika kamu menggunakan laragon). Lalu klik kanan, pilih git bash here habis itu, ketikkan atau copas `git clone https://github.com/fahrianggara/wp2.git`.
+1. Clone repository dengan cara buka folder `htdocs` atau `www` (jika kamu menggunakan laragon). Lalu klik kanan, pilih git bash here habis itu, ketikkan atau copas `git clone https://github.com/fahrianggara/wp2.git`.
 2. Jika sudah, ketikkan `cd wp2` untuk masuk ke folder yang baru di clone, lalu ketikkan lagi `cd lms`, abis itu jalankan perintah `composer install` atau bisa juga `composer update`.
 3. Sekarang buka phpmyadmin untuk membuat database baru dengan nama `ci_dilemas`.
 4. Jika sudah, balik lagi ke terminal git bash lalu ketikkan `code .` Untuk membuka text editor (vscode).
@@ -47,8 +47,8 @@ database.default.DBDriver = MySQLi
 # database.default.DBPrefix =
 # database.default.port = 3306
 ```
-7. Balik ke git bash terminal lalu ketikkan perintah php spark migrate jika sudah ketikkan lagi php spark db:seed Run. Dan jangan lupa untuk mengaktifkan MySQL pada Local Server.
-8. Selanjutnya jalankan/ketikkan perintah php spark serve Dan aplikasi Di-LeMas akan berjalan pada url http://localhost:8080.
+7. Balik ke git bash terminal lalu ketikkan perintah `php spark migrate` jika sudah, ketikkan lagi `php spark db:seed Run`. Dan jangan lupa untuk mengaktifkan MySQL pada Local Server.
+8. Selanjutnya jalankan/ketikkan perintah `php spark serve` Dan aplikasi Di-LeMas akan berjalan pada url `http://localhost:8080`.
 
 ### c. Fitur
 
@@ -76,7 +76,7 @@ database.default.DBDriver = MySQLi
 
 ## Entity Relationship Table (ERD)
 
-<p><a href="https://github.com/fahrianggara/wp2/blob/main/lms/public/images/erd.png?raw=true" target="_blank"><img src="https://github.com/fahrianggara/wp2/blob/main/lms/public/images/erd.png?raw=true"></a></p>
+<p><a href="javascript:void(0);" target="_blank"><img src="https://github.com/fahrianggara/wp2/blob/main/lms/public/images/erd.png?raw=true"></a></p>
 
 ## Kontributor
 
